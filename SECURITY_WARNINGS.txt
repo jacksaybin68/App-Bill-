@@ -1,0 +1,48 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         ⚠️  CẢNH BÁO BẢO MẬT  ⚠️                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Ngày tạo: 2026-09-12
+Dự án: BillViet - ThanhDieu System
+
+════════════════════════════════════════════════════════════════════════════════
+1. THÔNG TIN NHẠY CẦN BÁO (ĐÃ XỬ LÝ)
+══════════════════════════════║                         ⚠️  CẢNH BÁO BẢO MẬT  ⚠️                            ║
+╚═════════?h .env
+   $ cp .env.example .env
+
+Bước 2: Chỉnh sửa .env với thông tin thực tế
+   $ nano .env
+
+╚═════════════════════════════???═?Ngày tạo: 2026-09-12
+Dự án: BillViet - ThanhDieu System
+
+══════════════════════════════════════════════════════════?ername
+DB_PASSWORD    - Database password (QUYẾN TRỌNG: khôn1. THÔNG TIN NHẠY CẦN BÁO (ĐÃ XỬ LÝ)
+══════════════════════════════║                          - Domain của website (default: 127.0.0.1:8080)
+
+════════════════════════╚═════════?h .env
+   $ cp .env.example .env
+
+Bước 2: C═══════════════════════════
+
+✓ Không bao giờ commit .env lên Git/repo công khai
+✓ Khôn
+Bước 2: Chỉnh sửTelegram Bot Token nếu nghi ngờ bị lộ
+✓ Sử dụng password mạnh cho database
+✓ Bật HTTPS đối với production
+✓ Kiểm tra log thường xuyên
+✓ Dọn dẹp error log định k
+══???═════════?B_PASSWORD    - Database password (QUYẾN TRỌNG: khôn1. THÔNG TIN NHẠY CẦN BÁO (ĐÃ XỬ LÝ)
+═════════════════════════, v.v.):
+- Không hardcode API key trong code
+- Sử dụng environment variables
+- Ẩn API key khỏi log/
+════════════════════════╚═════════?h .env
+   $ cp .env.example .env
+
+Bước 2: C???═════════════════════════════════════════?Bước 2: C═══? tra log tìm dấu hiệu xâm nhập
+4. Report cho team/ban lãnh đạo
+5. Cập nhật code vá lỗ hổng
+
+═════════════???═════════════════

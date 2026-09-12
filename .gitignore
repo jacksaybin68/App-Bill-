@@ -1,0 +1,48 @@
+# Environment files (contain secrets - NEVER commit)
+.env
+.env.local
+.env.*.local
+
+# Error logs (can contain sensitive data)
+error_log
+admin/error_log
+app/**/error_log
+function/**/error_log
+client/**/error_log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache files
+/public/cache/
+/public/src/vtd/cache/
+
+# Backup files
+backup/
+*.bak
+*.backup
+
+# Upload directories (may contain user data)
+/public/uploads/
+/public/cache/bill/
+
+# Vendored dependencies (composer managed, not part of source changes)
+/vendor/
+
+# macOS zip-extraction artifacts
+__MACOSX/
+._*
+
+# Stale nested repo from previous session (cleanup planned - Pha 6)
+/public_html_git/
+
+# Deposit-credit adjustment exports (contains user financial data)
+/credit-adjustments-*.csv
+

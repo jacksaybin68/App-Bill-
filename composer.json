@@ -1,0 +1,8 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "jamesryanbell/cloudflare": "^1.11",
+        "react/event-loop": "^1.5",
+        "google/apiclient": "^2.18"
+    }
+}

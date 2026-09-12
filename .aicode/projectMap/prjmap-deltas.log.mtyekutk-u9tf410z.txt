@@ -1,0 +1,28 @@
+# PRJMAP_DELTAS_LOG v1
+roots_id: f0aaf64f488c34c72314abb056d9687005ef8d3309f8df4dccedd4b8eddd8ec0
+baseline_id: ce92e8426d74bad66a0f6eb5ae4a48140d5177d0150810c023f931eff1abdddf
+## delta seq=1 parent=ce92e8426d74bad66a0f6eb5ae4a48140d5177d0150810c023f931eff1abdddf id=acc29d9771ae57667262b760f3ead41133a7977c8a3a57a461bb92faef668bc7
++ public_html/.env.example
++ public_html/.gitignore
+- public_html/admin/assets/fonts/Nunito-Regular.woff
+- public_html/admin/error_log
+- public_html/app/ajax/global/admin/error_log
+- public_html/app/ajax/global/users/error_log
+- public_html/client/layout/pages/auth/error_log
+- public_html/client/layout/pages/global/error/error_log
+- public_html/client/layout/pages/global/menu/error_log
+- public_html/client/layout/pages/global/sub-page/bill/error_log
+- public_html/client/layout/pages/global/sub-page/giay-to/error_log
+- public_html/client/layout/pages/global/sub-page/man-hinh-khoa/error_log
+- public_html/client/layout/pages/global/sub-page/so-du/error_log
+- public_html/client/layout/pages/install/error_log
+- public_html/client/layout/pages/user/error_log
+- public_html/error_log
+- public_html/function/call-back/api/error_log
+- public_html/function/call-back/api/spam-ngl.php.bak
+- public_html/function/call-back/api/spam-sms.php.bak
+- public_html/function/cron/error_log
+- public_html/function/insert/alert/error_log
+- public_html/public/cache/stats.json
++ public_html/SECURITY_WARNINGS.txt
+

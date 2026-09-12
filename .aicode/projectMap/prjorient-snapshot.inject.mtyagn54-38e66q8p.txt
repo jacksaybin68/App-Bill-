@@ -1,0 +1,176 @@
+# PROJECT MAP (HINT)
+descr: Non-authoritative workspace snapshot. It may be intentionally stale within a bounded tolerance. Never treat paths in this block as verified; verify with fs_* and/or index_* / symbol_* / file_load* before acting.
+
+FORMAT:
+format: orientation report
+format_descr: A deterministic, bounded orientation report derived from the file listing (paths only).
+
+GUIDANCE:
+- Use this report for orientation; verify before edits or claims.
+- If the snapshot and the workspace disagree, the workspace wins.
+
+## WORKSPACE ROOTS
+descr: List of workspace roots (multi-root). Each root is the prefix of a CAN path: "<projectName>/<relativePosixPath>".
+- public_html/
+
+## ROOT: public_html/
+descr: This block summarizes one workspace root: counts, directory structure (macro + detail), and detected configuration files.
+
+### SNAPSHOT METRICS
+descr: High-level counts derived from the project map listing snapshot (paths only; no file content reads).
+- Files: 1750
+- Directories: 245
+
+### ROOT FILES
+descr: Files directly under the workspace root (no subdirectories), printed as full CAN paths.
+- public_html/.htaccess
+- public_html/billviet.sql
+- public_html/composer.json
+- public_html/composer.lock
+- public_html/config.ini
+- public_html/dash.php
+- public_html/error_log
+- public_html/index.php
+- public_html/install.lock
+- public_html/robots.txt
+- public_html/router.php
+- public_html/tele.config.php
+
+### EXTENSIONS HISTOGRAM
+descr: File extension counts computed from basenames (e.g. ".ts"). This is a purely statistical signal used for orientation.
+- .png=955, .php=322, .jpeg=121, .ttf=76, .jpg=56, .js=44, .css=34, .otf=34, .gif=20, .svg=19, .woff2=18, (no-ext)=17, .webp=10, .woff=5, .cur=3, .json=3, .bak=2, .lock=2, .sql=2, .zip=2, (dotfile)=1, .db=1, .eot=1, .ini=1, .txt=1
+
+### MACRO PARTITION
+descr: Deterministic selection of major child directories (coverage-based) to provide a coarse structure view.
+- Split (public_html/): selected=['public_html/public/', 'public_html/admin/', 'public_html/client/', 'public_html/server/', 'public_html/function/', 'public_html/__MACOSX/'], other_files=26, other_dirs=4
+- Split (public_html/public/): selected=['public_html/public/src/'], other_files=1, other_dirs=1
+
+### DETAIL TREE CUT
+descr: Deterministic subtree cut (PARTIAL view; NOT a full directory listing). Expansion is limited by a fixed node budget (see budget_nodes=... on each root line) and max_depth=7.
+public_html/public/ — 1278 files — child_dirs=2 tree_height=7 — budget_nodes=42 — .png(932) .jpeg(121) .ttf(71)
+↳ public_html/public/cache/ — 1 files — child_dirs=0 tree_height=0 — .json(1)
+↳ public_html/public/src/ — 1277 files — child_dirs=1 tree_height=6 — .png(932) .jpeg(121) .ttf(71)
+↳↳ public_html/public/src/vtd/ — 1277 files — child_dirs=5 tree_height=5 — .png(932) .jpeg(121) .ttf(71)
+↳↳↳ public_html/public/src/vtd/css/ — 10 files — child_dirs=2 tree_height=2 — .woff2(4) .css(3) .cur(3)
+↳↳↳ public_html/public/src/vtd/fonts/ — 108 files — child_dirs=17 tree_height=2 — .ttf(71) .otf(34) .woff(2)
+↳↳↳ public_html/public/src/vtd/img/ — 1135 files — child_dirs=5 tree_height=4 — .png(932) .jpeg(121) .jpg(51)
+↳↳↳↳ public_html/public/src/vtd/img/icon/ — 178 files — child_dirs=4 tree_height=3 — .png(166) .jpg(5) .gif(4)
+↳↳↳↳↳ public_html/public/src/vtd/img/icon/bank/ — 126 files — child_dirs=2 tree_height=2 — .png(121) .jpg(5)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/icon/bank/2/ — 15 files — child_dirs=0 tree_height=0 — .png(15)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/icon/bank/addon/ — 29 files — child_dirs=1 tree_height=1 — .png(29)
+↳↳↳↳↳ public_html/public/src/vtd/img/icon/front-pages/ — 18 files — child_dirs=0 tree_height=0 — .png(14) .gif(2) .webp(2)
+↳↳↳↳↳ public_html/public/src/vtd/img/icon/menu/ — 29 files — child_dirs=0 tree_height=0 — .png(27) .gif(1) .webp(1)
+↳↳↳↳↳ public_html/public/src/vtd/img/icon/nha-mang/ — 3 files — child_dirs=0 tree_height=0 — .png(3)
+↳↳↳↳ public_html/public/src/vtd/img/main/ — 37 files — child_dirs=2 tree_height=1 — .png(22) .gif(11) .jpg(3)
+↳↳↳↳↳ public_html/public/src/vtd/img/main/level/ — 10 files — child_dirs=0 tree_height=0 — .gif(10)
+↳↳↳↳↳ public_html/public/src/vtd/img/main/vip/ — 15 files — child_dirs=0 tree_height=0 — .png(14) .jpg(1)
+↳↳↳↳ public_html/public/src/vtd/img/phoi/ — 838 files — child_dirs=8 tree_height=3 — .png(693) .jpeg(105) .jpg(40)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/battery-x/ — 199 files — child_dirs=2 tree_height=1 — .png(199)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/battery-x/dark/ — 99 files — child_dirs=0 tree_height=0 — .png(99)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/battery-x/light/ — 100 files — child_dirs=0 tree_height=0 — .png(100)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/battery-z/ — 364 files — child_dirs=2 tree_height=1 — .png(364)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/battery-z/dark/ — 182 files — child_dirs=0 tree_height=0 — .png(182)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/battery-z/light/ — 182 files — child_dirs=0 tree_height=0 — .png(182)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/bill/ — 201 files — child_dirs=4 tree_height=2 — .jpeg(105) .png(60) .jpg(36)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/bill/bdsd/ — 4 files — child_dirs=0 tree_height=0 — .jpeg(2) .jpg(2)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/bill/don-luu/ — 21 files — child_dirs=0 tree_height=0 — .jpeg(21)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/bill/so-du/ — 51 files — child_dirs=0 tree_height=0 — .jpeg(41) .png(7) .jpg(3)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/bill/theme/ — 36 files — child_dirs=1 tree_height=1 — .jpeg(36)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/dynamics/ — 4 files — child_dirs=0 tree_height=0 — .png(4)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/giay-to/ — 9 files — child_dirs=4 tree_height=1 — .png(5) .jpg(4)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/network/ — 5 files — child_dirs=2 tree_height=1 — .png(5)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/networks/ — 20 files — child_dirs=2 tree_height=1 — .png(20)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/networks/dark/ — 10 files — child_dirs=0 tree_height=0 — .png(10)
+↳↳↳↳↳↳ public_html/public/src/vtd/img/phoi/networks/light/ — 10 files — child_dirs=0 tree_height=0 — .png(10)
+↳↳↳↳↳ public_html/public/src/vtd/img/phoi/pin/ — 30 files — child_dirs=2 tree_height=1 — .png(30)
+↳↳↳↳ public_html/public/src/vtd/img/svg/ — 11 files — child_dirs=0 tree_height=0 — .svg(10) .webp(1)
+↳↳↳↳ public_html/public/src/vtd/img/uploads/ — 65 files — child_dirs=1 tree_height=1 — .png(47) .jpeg(15) .jpg(2)
+↳↳↳↳↳ public_html/public/src/vtd/img/uploads/t/ — 65 files — child_dirs=0 tree_height=0 — .png(47) .jpeg(15) .jpg(2)
+↳↳↳ public_html/public/src/vtd/js/ — 4 files — child_dirs=0 tree_height=0 — .js(4)
+↳↳↳ public_html/public/src/vtd/libs/ — 20 files — child_dirs=11 tree_height=2 — .js(12) .css(5) .svg(3)
+public_html/admin/ — 139 files — child_dirs=3 tree_height=6 — budget_nodes=22 — .css(26) .js(26) .png(23)
+↳ public_html/admin/assets/ — 119 files — child_dirs=5 tree_height=5 — .css(26) .js(26) .png(23)
+↳↳ public_html/admin/assets/css/ — 25 files — child_dirs=3 tree_height=1 — .css(13) .png(11) .svg(1)
+↳↳↳ public_html/admin/assets/css/editors/ — 2 files — child_dirs=0 tree_height=0 — .css(2)
+↳↳↳ public_html/admin/assets/css/images/ — 12 files — child_dirs=0 tree_height=0 — .png(11) .svg(1)
+↳↳↳ public_html/admin/assets/css/skins/ — 5 files — child_dirs=0 tree_height=0 — .css(5)
+↳↳ public_html/admin/assets/fonts/ — 13 files — child_dirs=0 tree_height=0 — .woff2(6) .ttf(4) .woff(2)
+↳↳ public_html/admin/assets/img/ — 21 files — child_dirs=2 tree_height=1 — .png(8) .svg(5) .webp(4)
+↳↳↳ public_html/admin/assets/img/anime/ — 4 files — child_dirs=0 tree_height=0 — .webp(3) .jpg(1)
+↳↳↳ public_html/admin/assets/img/svg/ — 5 files — child_dirs=0 tree_height=0 — .svg(5)
+↳↳ public_html/admin/assets/js/ — 8 files — child_dirs=1 tree_height=2 — .js(8)
+↳↳ public_html/admin/assets/oneui/ — 48 files — child_dirs=4 tree_height=4 — .js(14) .css(13) .woff2(8)
+↳↳↳ public_html/admin/assets/oneui/css/ — 10 files — child_dirs=2 tree_height=2 — .css(10)
+↳↳↳ public_html/admin/assets/oneui/fonts/ — 10 files — child_dirs=3 tree_height=1 — .woff2(8) .ttf(1) .woff(1)
+↳↳↳ public_html/admin/assets/oneui/js/ — 23 files — child_dirs=3 tree_height=3 — .js(14) .css(3) .gif(3)
+↳↳↳↳ public_html/admin/assets/oneui/js/config/ — 1 files — child_dirs=0 tree_height=0 — .json(1)
+↳↳↳↳ public_html/admin/assets/oneui/js/lib/ — 9 files — child_dirs=1 tree_height=2 — .gif(3) .css(2) .js(2)
+↳↳↳↳ public_html/admin/assets/oneui/js/plugins/ — 10 files — child_dirs=9 tree_height=1 — .js(9) .css(1)
+↳↳↳ public_html/admin/assets/oneui/media/ — 5 files — child_dirs=1 tree_height=1 — .jpg(3) .png(2)
+↳ public_html/admin/auth/ — 1 files — child_dirs=0 tree_height=0 — .php(1)
+↳ public_html/admin/partials/ — 3 files — child_dirs=0 tree_height=0 — .php(3)
+public_html/client/ — 135 files — child_dirs=1 tree_height=5 — budget_nodes=22 — .php(125) (no-ext)(9) .sql(1)
+↳ public_html/client/layout/ — 135 files — child_dirs=1 tree_height=4 — .php(125) (no-ext)(9) .sql(1)
+↳↳ public_html/client/layout/pages/ — 135 files — child_dirs=5 tree_height=3 — .php(125) (no-ext)(9) .sql(1)
+↳↳↳ public_html/client/layout/pages/admin/ — 1 files — child_dirs=0 tree_height=0 — .php(1)
+↳↳↳ public_html/client/layout/pages/auth/ — 5 files — child_dirs=0 tree_height=0 — .php(4) (no-ext)(1)
+↳↳↳ public_html/client/layout/pages/global/ — 124 files — child_dirs=3 tree_height=2 — .php(118) (no-ext)(6)
+↳↳↳↳ public_html/client/layout/pages/global/error/ — 4 files — child_dirs=0 tree_height=0 — .php(3) (no-ext)(1)
+↳↳↳↳ public_html/client/layout/pages/global/menu/ — 19 files — child_dirs=0 tree_height=0 — .php(18) (no-ext)(1)
+↳↳↳↳ public_html/client/layout/pages/global/sub-page/ — 99 files — child_dirs=6 tree_height=1 — .php(95) (no-ext)(4)
+↳↳↳↳↳ public_html/client/layout/pages/global/sub-page/bdsd/ — 2 files — child_dirs=0 tree_height=0 — .php(2)
+↳↳↳↳↳ public_html/client/layout/pages/global/sub-page/bill/ — 54 files — child_dirs=0 tree_height=0 — .php(53) (no-ext)(1)
+↳↳↳↳↳ public_html/client/layout/pages/global/sub-page/giay-to/ — 7 files — child_dirs=0 tree_height=0 — .php(6) (no-ext)(1)
+↳↳↳↳↳ public_html/client/layout/pages/global/sub-page/man-hinh-khoa/ — 16 files — child_dirs=0 tree_height=0 — .php(15) (no-ext)(1)
+↳↳↳↳↳ public_html/client/layout/pages/global/sub-page/so-du/ — 14 files — child_dirs=0 tree_height=0 — .php(13) (no-ext)(1)
+↳↳↳↳↳ public_html/client/layout/pages/global/sub-page/tools/ — 6 files — child_dirs=0 tree_height=0 — .php(6)
+↳↳↳ public_html/client/layout/pages/install/ — 3 files — child_dirs=0 tree_height=0 — (no-ext)(1) .php(1) .sql(1)
+↳↳↳ public_html/client/layout/pages/user/ — 2 files — child_dirs=0 tree_height=0 — (no-ext)(1) .php(1)
+public_html/server/ — 109 files — child_dirs=2 tree_height=5 — budget_nodes=20 — .php(108) .db(1)
+↳ public_html/server/captcha/ — 2 files — child_dirs=0 tree_height=0 — .php(2)
+↳ public_html/server/models/ — 107 files — child_dirs=1 tree_height=4 — .php(106) .db(1)
+↳↳ public_html/server/models/object/ — 107 files — child_dirs=4 tree_height=3 — .php(106) .db(1)
+↳↳↳ public_html/server/models/object/admin/ — 3 files — child_dirs=0 tree_height=0 — .php(2) .db(1)
+↳↳↳ public_html/server/models/object/global/ — 8 files — child_dirs=1 tree_height=1 — .php(8)
+↳↳↳↳ public_html/server/models/object/global/bill-settings/ — 4 files — child_dirs=0 tree_height=0 — .php(4)
+↳↳↳ public_html/server/models/object/render/ — 87 files — child_dirs=5 tree_height=2 — .php(87)
+↳↳↳↳ public_html/server/models/object/render/bdsd/ — 2 files — child_dirs=0 tree_height=0 — .php(2)
+↳↳↳↳ public_html/server/models/object/render/bill/ — 52 files — child_dirs=0 tree_height=0 — .php(52)
+↳↳↳↳ public_html/server/models/object/render/giay-to/ — 5 files — child_dirs=3 tree_height=1 — .php(5)
+↳↳↳↳↳ public_html/server/models/object/render/giay-to/cccd/ — 1 files — child_dirs=0 tree_height=0 — .php(1)
+↳↳↳↳↳ public_html/server/models/object/render/giay-to/vedientu/ — 1 files — child_dirs=0 tree_height=0 — .php(1)
+↳↳↳↳↳ public_html/server/models/object/render/giay-to/velenmaybay/ — 3 files — child_dirs=0 tree_height=0 — .php(3)
+↳↳↳↳ public_html/server/models/object/render/man-hinh-khoa/ — 15 files — child_dirs=0 tree_height=0 — .php(15)
+↳↳↳↳ public_html/server/models/object/render/sodu/ — 12 files — child_dirs=0 tree_height=0 — .php(12)
+↳↳↳ public_html/server/models/object/users/ — 9 files — child_dirs=0 tree_height=0 — .php(9)
+public_html/function/ — 47 files — child_dirs=7 tree_height=4 — budget_nodes=18 — .php(42) (no-ext)(3) .bak(2)
+↳ public_html/function/call-back/ — 12 files — child_dirs=2 tree_height=1 — .php(9) .bak(2) (no-ext)(1)
+↳ public_html/function/connect/ — 4 files — child_dirs=0 tree_height=0 — .php(4)
+↳ public_html/function/cron/ — 2 files — child_dirs=0 tree_height=0 — (no-ext)(1) .php(1)
+↳ public_html/function/data/ — 1 files — child_dirs=0 tree_height=0 — .php(1)
+↳ public_html/function/handle/ — 2 files — child_dirs=0 tree_height=0 — .php(2)
+↳ public_html/function/insert/ — 23 files — child_dirs=11 tree_height=3 — .php(22) (no-ext)(1)
+↳ public_html/function/obf-php/ — 3 files — child_dirs=2 tree_height=1 — .php(3)
+public_html/__MACOSX/ — 16 files — child_dirs=3 tree_height=6 — budget_nodes=16 — .php(13) .js(2) .zip(1)
+↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/ — 14 files — child_dirs=6 tree_height=5 — .php(11) .js(2) .zip(1)
+↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/app/ — 1 files — child_dirs=1 tree_height=3 — .php(1)
+↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/client/ — 3 files — child_dirs=1 tree_height=4 — .php(3)
+↳↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/client/layout/ — 3 files — child_dirs=1 tree_height=3 — .php(3)
+↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/config/ — 1 files — child_dirs=0 tree_height=0 — .php(1)
+↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/include/ — 3 files — child_dirs=0 tree_height=0 — .php(3)
+↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/public/ — 3 files — child_dirs=1 tree_height=3 — .js(2) .zip(1)
+↳↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/public/src/ — 3 files — child_dirs=1 tree_height=2 — .js(2) .zip(1)
+↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/server/ — 3 files — child_dirs=1 tree_height=3 — .php(3)
+↳↳↳ public_html/__MACOSX/[UPDATE-LAVENDER] BAN-SAN-PHAM/server/models/ — 3 files — child_dirs=2 tree_height=2 — .php(3)
+↳ public_html/__MACOSX/client/ — 1 files — child_dirs=1 tree_height=5 — .php(1)
+↳↳ public_html/__MACOSX/client/layout/ — 1 files — child_dirs=1 tree_height=4 — .php(1)
+↳ public_html/__MACOSX/server/ — 1 files — child_dirs=1 tree_height=4 — .php(1)
+↳↳ public_html/__MACOSX/server/models/ — 1 files — child_dirs=1 tree_height=3 — .php(1)
+
+### POSSIBLE CONFIGURATION FILES
+descr: Deterministic detection of common configuration files across ecosystems. Only existing paths are printed. max_per_section=60.
+
+#### PHP / COMPOSER
+descr: PHP dependency manager (Composer) configuration and lockfiles.
+- public_html/composer.json
+- public_html/composer.lock

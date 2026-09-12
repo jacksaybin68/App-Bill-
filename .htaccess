@@ -1,0 +1,205 @@
+<IfModule mod_rewrite.c>
+Options -Indexes
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} ^.*(Baiduspider|HTTrack|Yandex).*$ [NC]
+RewriteRule .* - [F,L]
+ErrorDocument 404 /client/layout/pages/global/error/404.php
+ErrorDocument 403 /client/layout/pages/global/error/404.php
+ErrorDocument 504 /client/layout/pages/global/error/504.php
+RewriteCond %{ENV:REDIRECT_STATUS} 403
+RewriteRule ^ - [L]
+RewriteRule ^obf-alom/download/(.*)$ /function/obf-php/alom/download/$1 [L]
+#==============================#
+# Assign Index
+#==============================#
+RewriteRule ^install(|/)$ /client/layout/pages/install/ [L]
+RewriteRule ^trang-chu$ /dash.php [L]
+#RewriteRule ^xac-minh-email$ /client/layout/pages/global/menu/verify-email.php [L]
+RewriteRule ^thong-tin-thanh-toan$ /client/layout/pages/global/menu/tttt.php [L]
+RewriteRule ^fake-bill-chuyen-khoan$ /client/layout/pages/global/menu/fakebill.php [L]
+RewriteRule ^fake-bill-priority$ /client/layout/pages/global/menu/fake-bill-priority.php [L]
+RewriteRule ^fake-so-du$ /client/layout/pages/global/menu/fakesodu.php [L]
+RewriteRule ^fake-bdsd$ /client/layout/pages/global/menu/fakebiendong.php [L]
+RewriteRule ^thue-goi$ /client/layout/pages/global/menu/thue-goi.php [L]
+RewriteRule ^fake-bill/binance$ /client/layout/pages/global/menu/fakebill-binance.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa$ /client/layout/pages/global/menu/fakebill-manhinhkhoa.php [L]
+RewriteRule ^thue-app-bank-ao$ /client/layout/pages/global/menu/thue-app-bank-ao.php [L]
+RewriteRule ^danh-muc/ma-nguon/?$ /client/layout/pages/global/menu/ma-nguon.php?page=1 [L]
+RewriteRule ^danh-muc/ma-nguon/trang/([0-9]+)/?$ /client/layout/pages/global/menu/ma-nguon.php?page=$1 [L]
+RewriteRule ^(view-code|details)/([^/]+)$ /client/layout/pages/global/menu/chi-tiet-ma-nguon.php [L]
+RewriteRule ^thong-tin-goi$ /client/layout/pages/global/menu/info-vip.php [L]
+RewriteRule ^nap-tien/([^/]+)/(?:send|transfer)$ /client/layout/pages/global/menu/nap-tien.php [L]
+RewriteRule ^nap-tien/the-cao$ /client/layout/pages/global/menu/the-cao.php [L]
+#==============================#
+# Assign Fake Bill Ck
+#==============================#
+RewriteRule ^fake-bill/mb-bank$ /client/layout/pages/global/sub-page/bill/mb-bank.php [L]
+RewriteRule ^fake-bill/mb-bank-don-luu$ /client/layout/pages/global/sub-page/bill/mb-bank-don-luu.php [L]
+RewriteRule ^fake-bill/mb-bank-tet$ /client/layout/pages/global/sub-page/bill/mb-bank-tet.php [L]
+RewriteRule ^fake-bill/vietcombank$ /client/layout/pages/global/sub-page/bill/vietcombank.php [L]
+RewriteRule ^fake-bill/techcombank$ /client/layout/pages/global/sub-page/bill/techcombank.php [L]
+RewriteRule ^fake-bill/vietinbank$ /client/layout/pages/global/sub-page/bill/vietinbank.php [L]
+RewriteRule ^fake-bill/acb$ /client/layout/pages/global/sub-page/bill/acb.php [L]
+RewriteRule ^fake-bill/momo$ /client/layout/pages/global/sub-page/bill/momo.php [L]
+RewriteRule ^fake-bill/zalopay$ /client/layout/pages/global/sub-page/bill/zalopay.php [L]
+RewriteRule ^fake-bill/tp-bank$ /client/layout/pages/global/sub-page/bill/tpbank.php [L]
+RewriteRule ^fake-bill/vp-bank$ /client/layout/pages/global/sub-page/bill/vpbank.php [L]
+RewriteRule ^fake-bill/msb$ /client/layout/pages/global/sub-page/bill/msb.php [L]
+RewriteRule ^fake-bill/agribank$ /client/layout/pages/global/sub-page/bill/agribank.php [L]
+RewriteRule ^fake-bill/bacabank$ /client/layout/pages/global/sub-page/bill/bacabank.php [L]
+RewriteRule ^fake-bill/viettel-money$ /client/layout/pages/global/sub-page/bill/viettel-money.php [L]
+RewriteRule ^fake-bill/sell-binance$ /client/layout/pages/global/sub-page/bill/sell-binance.php [L]
+RewriteRule ^fake-bill/buy-binance$ /client/layout/pages/global/sub-page/bill/buy-binance.php [L]
+RewriteRule ^fake-bill/okx$ /client/layout/pages/global/sub-page/bill/okx.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/mb-bank$ /client/layout/pages/global/sub-page/man-hinh-khoa/mb-bank.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/acb$ /client/layout/pages/global/sub-page/man-hinh-khoa/acb.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/momo$ /client/layout/pages/global/sub-page/man-hinh-khoa/momo.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/vietcombank$ /client/layout/pages/global/sub-page/man-hinh-khoa/vietcombank.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/binance$ /client/layout/pages/global/sub-page/man-hinh-khoa/binance.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/zalopay$ /client/layout/pages/global/sub-page/man-hinh-khoa/zalopay.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/zlpay$ /client/layout/pages/global/sub-page/man-hinh-khoa/zlpay.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/bidv$ /client/layout/pages/global/sub-page/man-hinh-khoa/bidv.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/sacombankpay$ /client/layout/pages/global/sub-page/man-hinh-khoa/sacombankpay.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/vietinbank$ /client/layout/pages/global/sub-page/man-hinh-khoa/vietinbank.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/techcombank$ /client/layout/pages/global/sub-page/man-hinh-khoa/techcombank.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/vib$ /client/layout/pages/global/sub-page/man-hinh-khoa/vib.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/msb$ /client/layout/pages/global/sub-page/man-hinh-khoa/msb.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/tpbank$ /client/layout/pages/global/sub-page/man-hinh-khoa/tpbank.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/agribank$ /client/layout/pages/global/sub-page/man-hinh-khoa/agribank.php [L]
+RewriteRule ^fake-bill-chuyen-khoan/mb-bank-priority$ /client/layout/pages/global/sub-page/bill/mb-bank-priority.php [L]
+RewriteRule ^fake-bill-chuyen-khoan/seabank-premium$ /client/layout/pages/global/sub-page/bill/seabank-premium.php [L]
+RewriteRule ^fake-bill-chuyen-khoan/acb-privilege$ /client/layout/pages/global/sub-page/bill/acb-privilege.php [L]
+RewriteRule ^fake-bill/hdbank /client/layout/pages/global/sub-page/bill/hdbank.php [L]
+RewriteRule ^fake-bill/seabank$ /client/layout/pages/global/sub-page/bill/seabank.php [L]
+RewriteRule ^fake-bill/vibbank$ /client/layout/pages/global/sub-page/bill/vibbank.php [L]
+RewriteRule ^fake-bill/vietbank$ /client/layout/pages/global/sub-page/bill/vietbank.php [L]
+RewriteRule ^fake-bill/bvbank$ /client/layout/pages/global/sub-page/bill/bvbank.php [L]
+RewriteRule ^fake-bill/pgbank$ /client/layout/pages/global/sub-page/bill/pgbank.php [L]
+RewriteRule ^fake-bill/bidv$ /client/layout/pages/global/sub-page/bill/bidv.php [L]
+RewriteRule ^fake-bill/cake$ /client/layout/pages/global/sub-page/bill/cake.php [L]
+RewriteRule ^fake-bill/liobank$ /client/layout/pages/global/sub-page/bill/liobank.php [L]
+RewriteRule ^fake-bill/shinhanbank$ /client/layout/pages/global/sub-page/bill/shinhanbank.php [L]
+RewriteRule ^fake-bill/sacombank$ /client/layout/pages/global/sub-page/bill/sacombank.php [L]
+RewriteRule ^fake-bill/worri$ /client/layout/pages/global/sub-page/bill/worribank.php [L]
+RewriteRule ^fake-bill-chuyen-khoan/vietcombank-priority$ /client/layout/pages/global/sub-page/bill/vietcombank-priority.php [L]
+RewriteRule ^fake-bill-chuyen-khoan/vietcombank-galaxy$ /client/layout/pages/global/sub-page/bill/vietcombank-galaxy.php [L]
+RewriteRule ^fake-bill-chuyen-khoan/bidv-premier$ /client/layout/pages/global/sub-page/bill/bidv-premier.php [L]
+RewriteRule ^fake-bill/tp-bank-new$ /client/layout/pages/global/sub-page/bill/tpbank-new.php [L]
+RewriteRule ^fake-bill/namabank$ /client/layout/pages/global/sub-page/bill/namabank.php [L]
+RewriteRule ^fake-bill/vietinbank-1$ /client/layout/pages/global/sub-page/bill/vietinbankred.php [L]
+RewriteRule ^fake-bill/pvbank$ /client/layout/pages/global/sub-page/bill/pvbank.php [L]
+RewriteRule ^fake-bill/ocb$ /client/layout/pages/global/sub-page/bill/ocb.php [L]
+RewriteRule ^fake-bill/chinhsachxahoi$ /client/layout/pages/global/sub-page/bill/chinhsachxahoi.php [L]
+RewriteRule ^fake-bill/eximbank$ /client/layout/pages/global/sub-page/bill/eximbank.php [L]
+RewriteRule ^fake-bill/saigonbank$ /client/layout/pages/global/sub-page/bill/saigonbank.php [L]
+RewriteRule ^fake-bill/abbank$ /client/layout/pages/global/sub-page/bill/abbank.php [L]
+RewriteRule ^fake-bill/ncb$ /client/layout/pages/global/sub-page/bill/ncb.php [L]
+RewriteRule ^fake-bill/lpbank$ /client/layout/pages/global/sub-page/bill/lpbank.php [L]
+RewriteRule ^fake-bill/kienlongbank$ /client/layout/pages/global/sub-page/bill/kienlongbank.php [L]
+RewriteRule ^fake-bill/shb$ /client/layout/pages/global/sub-page/bill/shb.php [L]
+RewriteRule ^fake-bill/vietcombank-new$ /client/layout/pages/global/sub-page/bill/vietcombank-new.php [L]
+RewriteRule ^fake-bill/acb-new$ /client/layout/pages/global/sub-page/bill/acb-new.php [L]
+
+#==============================#
+# Assign Fake Bill So Du
+#==============================#
+RewriteRule ^fake-so-du/vietinbank$ /client/layout/pages/global/sub-page/so-du/vietinbank.php [L]
+RewriteRule ^fake-so-du/momo$ /client/layout/pages/global/sub-page/so-du/momo.php [L]
+RewriteRule ^fake-so-du/mb-bank$ /client/layout/pages/global/sub-page/so-du/mb-bank.php [L]
+RewriteRule ^fake-so-du/zalopay$ /client/layout/pages/global/sub-page/so-du/zalopay.php [L]
+RewriteRule ^fake-so-du/acb$ /client/layout/pages/global/sub-page/so-du/acb.php [L]
+RewriteRule ^fake-so-du/techcombank$ /client/layout/pages/global/sub-page/so-du/techcombank.php [L]
+RewriteRule ^fake-so-du/vietcombank$ /client/layout/pages/global/sub-page/so-du/vietcombank.php [L]
+RewriteRule ^fake-so-du/cake$ /client/layout/pages/global/sub-page/so-du/cake.php [L]
+RewriteRule ^fake-so-du/mb-bank-priority$ /client/layout/pages/global/sub-page/so-du/mb-priority.php [L]
+RewriteRule ^fake-so-du/agribank$ /client/layout/pages/global/sub-page/so-du/agribank.php [L]
+RewriteRule ^fake-so-du/tpbank$ /client/layout/pages/global/sub-page/so-du/tpbank.php [L]
+RewriteRule ^fake-so-du/vpbank$ /client/layout/pages/global/sub-page/so-du/vpbank.php [L]
+
+#==============================#
+# Assign Fake Bill BDSD
+#==============================#
+RewriteRule ^fake-bdsd/mb-bank$ /client/layout/pages/global/sub-page/bdsd/mb-bank.php [L]
+RewriteRule ^fake-bdsd/techcombank$ /client/layout/pages/global/sub-page/bdsd/techcombank.php [L]
+
+#==============================#
+# Assign Fake Other
+#==============================#
+RewriteRule ^tao-qr/cccd$ /client/layout/pages/global/sub-page/giay-to/qr-cccd.php [L]
+RewriteRule ^fake-cccd$ /client/layout/pages/global/sub-page/giay-to/cccd.php [L]
+RewriteRule ^fake-velenmaybay$ /client/layout/pages/global/sub-page/giay-to/velenmaybay.php [L]
+RewriteRule ^fake-velenmaybay2$ /client/layout/pages/global/sub-page/giay-to/velenmaybay2.php [L]
+RewriteRule ^fake-velenmaybay3$ /client/layout/pages/global/sub-page/giay-to/velenmaybay3.php [L]
+RewriteRule ^fake-vedientu$ /client/layout/pages/global/sub-page/giay-to/vedientu.php [L]
+RewriteRule ^fake-giayphepkinhdoanh$ /client/layout/pages/global/sub-page/giay-to/giayphepkinhdoanh.php [L]
+RewriteRule ^tools/spam-sms$ /client/layout/pages/global/sub-page/tools/spam-sms.php [L]
+# RewriteRule ^tools/obfuscate-javascript$ /client/layout/pages/global/sub-page/tools/obf-js.php [L]
+RewriteRule ^tools/spam-ngl-link$ /client/layout/pages/global/sub-page/tools/spam-ngl.php [L]
+# RewriteRule ^tools/encoder-php-online$ /client/layout/pages/global/sub-page/tools/encode-php.php [L]
+# RewriteRule ^tools/tao-subdomain-mien-phi$ /client/layout/pages/global/sub-page/tools/generator-subdomain.php [L]
+#RewriteRule ^tiktok/tang-luot-xem-mien-phi$ /client/layout/pages/global/sub-page/social/tiktok/buff-view.php [L]
+RewriteRule ^bad-error$ /client/layout/pages/global/error/bad-error.php [L]
+RewriteRule ^download/([a-fA-F0-9]{32})/?$ /function/insert/protect/verify.php?code=$1 [L]
+#==============================#
+# Assign Users
+#==============================#
+RewriteRule ^oauth/(dang-nhap|login|signIn)$ /client/layout/pages/auth/dang-nhap.php [L]
+RewriteRule ^oauth/(dang-ky|register|signUp)$ /client/layout/pages/auth/dang-ky.php [L]
+RewriteRule ^oauth/(dang-xuat|logout|kill-log)$ /client/layout/pages/auth/dang-xuat.php [L]
+RewriteRule ^oauth/(quen-mat-khau|forgot-password|recover-password)$ /client/layout/pages/auth/quen-mat-khau.php [L]
+RewriteRule ^user/([^/]+)/settings/?$ /client/layout/pages/user/profile.php [L]
+RewriteRule ^lich-su/nap-tien$ /client/layout/pages/global/menu/lich-su-nap-tien.php [L]
+RewriteRule ^lich-su/mua-goi$ /client/layout/pages/global/menu/lich-su-mua-goi.php [L]
+RewriteRule ^lich-su/tao-bill$ /client/layout/pages/global/menu/lich-su-tao-bill.php [L]
+RewriteRule ^lich-su/mua-hang$ /client/layout/pages/global/menu/lich-su-mua-hang.php [L]
+#==============================#
+# Assign Admin
+#==============================#
+RewriteRule ^admin/auth/logout$ /admin/auth/logout.php [L]
+RewriteRule ^admin/dashboard$ /admin/index.php [L]
+RewriteRule ^admin/create/newfeeds$ /admin/add-newfeeds.php [L]
+RewriteRule ^admin/newfeeds/list$ /admin/newfeeds-list.php [L]
+RewriteRule ^admin/create/product$ /admin/add-product.php [L]
+RewriteRule ^admin/product/list$ /admin/product-list.php [L]
+#RewriteRule ^admin/history/product$ /admin/history-product.php [L]
+RewriteRule ^admin/users/list$ /admin/user-list.php [L]
+RewriteRule ^admin/users/banned$ /admin/user-banned.php [L]
+RewriteRule ^admin/history/bank$ /admin/bank.php [L]
+RewriteRule ^admin/history/card$ /admin/card.php [L]
+RewriteRule ^admin/manager/payment$ /admin/payment.php [L]
+RewriteRule ^admin/activity/log$ /admin/activity.php [L]
+RewriteRule ^admin/manager/plan$ /admin/plan.php [L]
+RewriteRule ^admin/history/plan$ /admin/history-plan.php [L]
+RewriteRule ^admin/users/edit/([0-9a-zA-Z]+)$ /admin/edit-user.php [L]
+RewriteRule ^admin/history/bill$ /admin/bill.php [L]
+RewriteRule ^admin/cron-jobs$ /admin/cron-jobs.php [L]
+RewriteRule ^admin/settings(/.*)?$ /admin/settings.php [L]
+RewriteRule ^admin/tutorial-of-admin$ /admin/tutorial.php [L]
+#==============================#s
+# Assign API
+#==============================#
+RewriteRule ^call-back/api/auto-bank$ /function/call-back/api/auto-bank.php [L]
+RewriteRule ^call-back/api/n$ /function/call-back/api/notify.ini.php [L]
+RewriteRule ^call-back/api/card5s$ /function/call-back/api/card5s.php [L]
+RewriteRule ^call-back/api/thesieure$ /function/call-back/api/thesieure.php [L]
+RewriteRule ^call-back/api/spam-sms$ /function/call-back/api/spam-sms.php [L]
+RewriteRule ^call-back/api/spam-ngl$ /function/call-back/api/spam-ngl.php [L]
+RewriteRule ^log$ /function/call-back/controller/log.php [L]
+RewriteRule ^cron-jobs/global$ /function/cron/global.php [L]
+RewriteRule ^call-back/lavender$ /function/insert/alert/vip.ini.php [L]
+#==============================#
+# Assign Ajax
+#==============================#
+RewriteRule ^ajax/global/users$ /app/ajax/global/users/ajax-user.php [L]
+RewriteRule ^ajax/global/admin$ /app/ajax/global/admin/ajax-admin.php [L]
+RewriteRule ^ajax/global/default$ /app/ajax/global/default/ws-demo.php [L]
+RewriteRule ^ajax/global/default/stats$ /app/ajax/global/default/stats.php [L]
+RewriteRule ^ajax/global/installer$ /app/ajax/global/default/installer.php [L]
+RewriteRule ^ajax/global/download$ /app/ajax/global/default/download.php [L]
+#==============================#
+<FilesMatch "(install\.lock|fakebill\.sql|robots\.txt)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+#==============================#
+</IfModule>
