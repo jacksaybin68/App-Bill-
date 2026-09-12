@@ -20,7 +20,7 @@
                         <span class="text-muted-500"> Sở hữu nhiều đặc quyền khi mua gói thành viên / hãy chọn gói phù hợp với nhu cầu của bạn</span>
                     </p>
                     <p class="nui-paragraph nui-paragraph-md nui-weight-normal nui-lead-normal">
-                        <span class="text-muted-500"><b>Chỉ đăng nhập 1 thiết bị, nếu có nhu cầu mua gói cho công ty vui lòng liên hệ @BILLVIET88</span></b>
+                        <span class="text-muted-500"><b>Chỉ đăng nhập 1 thiết bị, nếu có nhu cầu mua gói cho công ty vui lòng liên hệ @mrjack6789</span></b>
                     </p>
                 </div>
             </div>

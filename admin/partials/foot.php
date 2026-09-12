@@ -1,8 +1,8 @@
 <div class="nk-footer">
     <div class="container-fluid">
         <div class="nk-footer-wrap">
-            <div class="nk-footer-copyright display-name-off text-right">&copy; 2025 Vận hành bởi <a href="https://t.me/billviet86"
-                    target="_blank">BILLVIET86</a></div>
+            <div class="nk-footer-copyright display-name-off text-right">&copy; 2025 Vận hành bởi <a href="https://t.me/mrjack6789"
+                    target="_blank">@mrjack6789</a></div>
             <div class="nk-footer-links">
                 <ul class="nav-sm">
                     <li class="nav-item dropup">

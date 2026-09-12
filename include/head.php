@@ -39,10 +39,10 @@ if (ExcludedDatabase())
   <span>
     <i>
     <?php if(!isMobile()):?>
-  Quý khách vui lòng đăng ký kênh Telegram <a href="javascript:void(0)" class="cursor-pointer text-primary-500" data-target-href-open="https://t.me/billvietreal">@billvietreal</a> để nhận thông báo, tên miền mới khi bị chặn. Xin cảm ơn !
+  Quý khách vui lòng đăng ký kênh Telegram <a href="javascript:void(0)" class="cursor-pointer text-primary-500" data-target-href-open="https://t.me/mrjack6789">@mrjack6789</a> để nhận thông báo, tên miền mới khi bị chặn. Xin cảm ơn !
   <?php else:?>
     <!-- Hãy xác minh địa chỉ email thật để nhận <a href="javascript:void(0)" class="cursor-pointer text-warning-500">thông báo & bảo mật tài khoản</a> từ chúng tôi 🕵️ -->
-     Quý khách vui lòng đăng ký kênh Telegram <a href="javascript:void(0)" class="cursor-pointer text-danger-500" data-target-href-open="https://t.me/billvietreal">@billvietreal</a> để nhận thông báo, tên miền mới khi bị chặn. Xin cảm ơn !
+     Quý khách vui lòng đăng ký kênh Telegram <a href="javascript:void(0)" class="cursor-pointer text-danger-500" data-target-href-open="https://t.me/mrjack6789">@mrjack6789</a> để nhận thông báo, tên miền mới khi bị chặn. Xin cảm ơn !
     <!-- Hòa cùng không khí hào hùng kỷ niệm 50 năm ngày Giải phóng miền Nam, thống nhất đất nước <a href="javascript:void(0)" class="cursor-pointer text-danger-500">(30/4/1975 – 30/4/2025)</a> - Khuyến mãi thêm <a class="text-warning-500">20%</a> khi <a class="text-primary-500">nạp tiền</a> tối thiểu <a class="text-success-500">50K</a> trở lên 🔥🔥🔥 -->
 <?php endif?>
 </i></span>

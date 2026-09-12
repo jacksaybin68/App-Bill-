@@ -140,7 +140,7 @@
                 <?php endforeach;?>
             </div>
         </div> -->
-        </br><marquee><b>Giá Bill hiện tại <?= FormatNumber::TD($TD->Setting('giataobill'), 2) ?>đ, cân nhắc thuê gói để sử dụng khi có nhu cầu tạo số lượng lớn. Chúng tôi chỉ hỗ trợ qua Telegram @BILLVIET88, quý khách vui lòng đăng ký kênh thông báo để nhận link khi bị nhà mạng chặn !</b></marquee>
+        </br><marquee><b>Giá Bill hiện tại <?= FormatNumber::TD($TD->Setting('giataobill'), 2) ?>đ, cân nhắc thuê gói để sử dụng khi có nhu cầu tạo số lượng lớn. Chúng tôi chỉ hỗ trợ qua Telegram @mrjack6789, quý khách vui lòng đăng ký kênh thông báo để nhận link khi bị nhà mạng chặn !</b></marquee>
         <div class="grid grid-cols-12 gap-8 mt-6">
             <div class="ltablet:col-span-8 col-span-12 lg:col-span-8">
                 <div class="nui-card nui-card-rounded-sm nui-card-default p-6 shadow-lg border-none">
