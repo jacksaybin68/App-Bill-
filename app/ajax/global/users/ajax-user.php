@@ -158,6 +158,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/mbbank-donl
 */
 require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/mbbank-tet.php');
 /**
+* Fakebill MB Bank Noel
+*/
+require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/mbbank-noel.php');
+/**
 * Fakebill Vietcombank
 */
 require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/vietcombank.php');
