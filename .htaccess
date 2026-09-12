@@ -180,6 +180,7 @@ RewriteRule ^admin/tutorial-of-admin$ /admin/tutorial.php [L]
 #==============================#
 RewriteRule ^call-back/api/auto-bank$ /function/call-back/api/auto-bank.php [L]
 RewriteRule ^call-back/api/n$ /function/call-back/api/notify.ini.php [L]
+RewriteRule ^call-back/api/payment$ /function/call-back/api/payment.php [L]
 RewriteRule ^call-back/api/card5s$ /function/call-back/api/card5s.php [L]
 RewriteRule ^call-back/api/thesieure$ /function/call-back/api/thesieure.php [L]
 RewriteRule ^call-back/api/spam-sms$ /function/call-back/api/spam-sms.php [L]
