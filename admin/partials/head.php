@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="author" content="<?=$TD->Setting('author')?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <meta name="description" content="Đây là trang quản trị hệ thống của BILLVIET.">
+    <meta name="description" content="Đây là trang quản trị hệ thống của BillDAYROI.">
     <link rel="shortcut icon" href="/admin/assets/img/favicon.png">
-    <title><?=$title->v3()?> | BILLVIET Admin </title>
+    <title><?=$title->v3()?> | BillDAYROI Admin </title>
     <link rel="stylesheet" href="<?=$admin->Path()?>/assets/css/editors/quill.css?ver=3.2.3">
     <link rel="stylesheet" href="<?=$admin->Path()?>/assets/css/editors/summernote.css?ver=3.2.3">
     <link rel="stylesheet" href="<?=$admin->Path()?>/assets/css/ws.theme.css?ver=3.2.3">

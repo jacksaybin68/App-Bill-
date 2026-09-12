@@ -19,7 +19,7 @@
                             <a data-bs-toggle="modal" href="#"
                                 class="btn btn-primary d-none d-md-inline-flex">
                                 <em class="icon ni ni-plus"></em>
-                                <span>BILLVIET</span>
+                                <span>BillDAYROI</span>
                             </a>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                                         <b>WEB Phần mềm: </b> <?=$serversoftware?>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Tên Mã Nguồn: </b> Fakebill Lavender - Đã được tinh chỉnh bởi BILLVIET
+                                        <b>Tên Mã Nguồn: </b> Fakebill Lavender - Đã được tinh chỉnh bởi BillDAYROI
                                         <!-- V<?=explode('.', $TD->Setting('version-code'))[0];?> -->
                                     </li>
                                     <li class="list-group-item">

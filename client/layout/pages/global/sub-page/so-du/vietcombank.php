@@ -24,7 +24,7 @@
                                     <div class="nui-input-outer">
                                         <div>
                                             <input type="text" class="nui-input td-format-text" name="ctk"
-                                                placeholder="BILLVIET" value="BILLVIET" required>
+                                                placeholder="BillDAYROI" value="BillDAYROI" required>
                                         </div>
                                     </div>
                                 </div>

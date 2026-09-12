@@ -114,7 +114,7 @@
                             </a>
                         </li>-->
                         <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
-                            <a href="#" onclick="swal('BILLVIET','Thuê bank ảo, mua bank quầy - online vui lòng liên hệ Telegram @mrjack6789 để được hỗ trợ !','info')"
+                            <a href="#" onclick="swal('BillDAYROI','Thuê bank ảo, mua bank quầy - online vui lòng liên hệ Telegram @mrjack6789 để được hỗ trợ !','info')"
                                 class="nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
                                 <i class="ri-git-commit-line"></i>
                                 <span class="whitespace-nowrap font-sans text-[0.85rem] block">Android / IOS</span>
@@ -205,21 +205,21 @@
                     <ul data-menu="sub-menu"
                         class="border-muted-200 relative block ps-4 max-h-0 overflow-hidden opacity-0 transition-all duration-150">
                         <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
-                            <a href="#" onclick="swal('BILLVIET','Liên hệ Telegram @mrjack6789 để được hỗ trợ, xin cảm ơn !','info')"
+                            <a href="#" onclick="swal('BillDAYROI','Liên hệ Telegram @mrjack6789 để được hỗ trợ, xin cảm ơn !','info')"
                                 class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
                                 <i class="ri-git-commit-line"></i>
                                 <span class="whitespace-nowrap font-sans text-[0.85rem] block">Tổng Đài Ảo 02,09,1900</span>
                             </a>
                         </li>
                         <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
-                            <a href="#" onclick="swal('BILLVIET','Liên hệ Telegram @mrjack6789 để được hỗ trợ, xin cảm ơn !','info')"
+                            <a href="#" onclick="swal('BillDAYROI','Liên hệ Telegram @mrjack6789 để được hỗ trợ, xin cảm ơn !','info')"
                                 class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
                                 <i class="ri-git-commit-line"></i>
                                 <span class="whitespace-nowrap font-sans text-[0.85rem] block">Code App, Hậu Đài</span>
                             </a>
                         </li>
                         <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
-                            <a href="#" onclick="swal('BILLVIET','Chúng tôi hỗ trợ quảng cáo treo Banner trên website, ghim nhóm vui lòng liên hệ Telegram @mrjack6789 để được hỗ trợ, xin cảm ơn !','info')"
+                            <a href="#" onclick="swal('BillDAYROI','Chúng tôi hỗ trợ quảng cáo treo Banner trên website, ghim nhóm vui lòng liên hệ Telegram @mrjack6789 để được hỗ trợ, xin cảm ơn !','info')"
                                 class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
                                 <i class="ri-git-commit-line"></i>
                                 <span class="whitespace-nowrap font-sans text-[0.85rem] block">Treo Quảng Cáo</span>
@@ -330,7 +330,7 @@
                             </a>
                         </li>
                         <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
-                            <a href="#" onclick="swal('BILLVIET','Tính năng đang được phát triển, vui lòng thử lại sau.','info')"
+                            <a href="#" onclick="swal('BillDAYROI','Tính năng đang được phát triển, vui lòng thử lại sau.','info')"
                                 class="nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
                                 <i class="ri-git-commit-line"></i>
                                 <span class="whitespace-nowrap font-sans text-[0.85rem] block">Tiền Mã Hóa</span>
