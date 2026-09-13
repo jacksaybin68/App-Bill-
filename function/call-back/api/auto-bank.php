@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/server/services/CallbackAuth.php';
  *+----------------------------------------------------------------------
  *| Author: ThanhDieu
  *+----------------------------------------------------------------------
- *| Tinh chỉnh bởi BILLVIET - sử dụng API SCPAYMENT
+ *| Tinh chỉnh bởi BillDAYROI - sử dụng API SCPAYMENT
  *| ACB-VPBANK AUTOBANK GATEWAY
  *| Nếu đấu qua api bên nguồn khác, vui lòng edit các params theo nguồn đó
  *| Php autobank yêu cầu phiên bản php 8.0 trở lên, nếu thấp hơn sẽ không hoạt động
