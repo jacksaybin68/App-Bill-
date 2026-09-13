@@ -75,7 +75,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'sell-binance') {
         canletrai($image, 36, 110, imagecolorallocate($image, 255,255,255), $fontPath.'/common/San Francisco/SanFranciscoText-Bold.otf', $thoigiantrendt, 130);
         CaiDatPhuTro($image, $vachsong, $iconTinHieu, $iconPins, $_POST["tin-hieu"],$iconDynamicsIsland);
         } else {
-            canchinhtien($image, 350, number_format($quydoiVND, ), $fontPath, imagecolorallocate($image, 31,31,41),33,20,15);        
+            canchinhtien($image, 350, number_format($quydoiVND, 2), $fontPath, imagecolorallocate($image, 31,31,41),33,20,15);        
             canchinhgiua($image, 16, 392, imagecolorallocate($image, 21,25,26), $fontPath.'/common/Helvetica/Helvetica.ttf','Bán thành công '.number_format($sUSDT,1).' USDT');
         }
 

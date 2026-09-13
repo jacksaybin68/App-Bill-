@@ -29,11 +29,11 @@ header('location: /');
                             <div class="text-block">
                                 <img class="nk-survey-gfx mb-5" style="pointer-events:none;user-select:none"
                                     src="/public/src/vtd/img/svg/survey.svg" alt="">
-                                <h3 class="text-white">Welcome to&nbsp;<b class="td-home">ThanhDieuInstaller</b>
+                                <h3 class="text-white">Welcome to&nbsp;<b class="td-home">BILLDAYROI Installer</b>
                                 </h3>
                                 <p>Chào mừng đến với trình cấu hình cơ sở dữ liệu.</p>
                             </div>
-                            <p class="d-none d-md-block">© 2023 WusTeam. Developed by ThanhDieu</p>
+                            <p class="d-none d-md-block">© 2026 BILLDAYROI. All Rights Reserved.</p>
                         </div>
                         <div
                             class="nk-split-content nk-split-stretch bg-white p-5 d-flex justify-center align-center flex-column">

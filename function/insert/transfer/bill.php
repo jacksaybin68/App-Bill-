@@ -113,6 +113,43 @@
                         </p> -->
                     </div>
                 </div>
+    <div class="col-bank">
+        <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+            <a href="javascript:;" data-target-href="/fake-bill/mb-bank-noel">
+                <div class="flex flex-col">
+                    <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                        <div class="nui-avatar-inner">
+                            <img src="/<?=__IMG__?>/icon/bank/mbbank.png" alt="Logo MB Bank Noel" class="nui-avatar-img rounded-lg">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4
+                            class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                            <span>MB Bank (Nền Noel)</span>
+                        </h4>
+                        <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'MB Bank Noel','type' => 'Chuyển Khoản']);?> bill</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-bank">
+        <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+            <a href="javascript:;" data-target-href="/fake-bill/mb-junior">
+                <div class="flex flex-col">
+                    <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                        <div class="nui-avatar-inner">
+                            <img src="/<?=__IMG__?>/icon/bank/mbbank2.png" alt="Logo MB Junior" class="nui-avatar-img rounded-lg">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4
+                            class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                            <span>MB Bank Junior</span>
+                        </h4>
+                        <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'MB Junior','type' => 'Chuyển Khoản']);?> bill</p>
+                    </div>
+                </div>
             </a>
         </div>
     </div>
@@ -1077,6 +1114,26 @@
                         <!-- <p class="nui-paragraph nui-paragraph-xs nui-weight-normal nui-lead-normal p-1">
                             <span class="text-muted-400">Ngân hàng Quân Đội</span>
                         </p> -->
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-bank">
+        <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+            <a href="javascript:;" data-target-href="/fake-so-du/mbnoel">
+                <div class="flex flex-col">
+                    <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                        <div class="nui-avatar-inner">
+                            <img src="/<?=__IMG__?>/icon/bank/mbbank.png" alt="Logo MB Bank Noel" class="nui-avatar-img rounded-lg">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4
+                            class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                            <span>MB Bank (Noel)</span>
+                        </h4>
+                        <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'MB Bank Noel','type' => 'Số Dư']);?> bill</p>
                     </div>
                 </div>
             </a>

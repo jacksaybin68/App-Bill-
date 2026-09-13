@@ -224,11 +224,15 @@ function Administrator(e) {
 
     _thanhdieu.ws.on('change', 'select[name="kieubank"]', function() {
         var select = $(this).val();
+        var form = $(this).closest('form');
+        var apiBankDiv = form.find('.api-bank');
+        var callbackInput = form.find('input[name="callback"]');
         if (select === 'tudong') {
-            $('.api-bank').slideDown();
+            apiBankDiv.slideDown();
+            callbackInput.prop('required', true);
         } else if (select === 'thucong') {
-            $('.api-bank').slideUp();
-
+            apiBankDiv.slideUp();
+            callbackInput.prop('required', false).val('');
         }
     });
     _thanhdieu.ws.on('click', '.dl-img', function(e) {
@@ -1036,6 +1040,9 @@ function Administrator(e) {
                     if (response.status == 200) {
                         $('form.add-transfer-bank')[0].reset();
                         $('#addTransfer').modal('hide');
+                        _thanhdieu.ws.fadeOut(200, function() {
+                            history.go(0);
+                        }).fadeIn(200);
                         resolve(response.msg);
                     } else {
                         reject(response.msg);

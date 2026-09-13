@@ -157,13 +157,13 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-12 <?=THANHDIEU($transfer['kieubank']!=='tudong') ? 'api-bank' : ''?>">
+                                                            <div class="col-lg-12 api-bank" style="<?=$transfer['kieubank']==='tudong' ? '' : 'display: none;'?>">
                                                                 <div class="form-group">
                                                                     <label class="form-label" for="stk">API Bank (<b
                                                                             class="text-danger">*</b>)</label>
                                                                     <div class="form-control-wrap">
                                                                         <input type="url" class="form-control"
-                                                                            name="callback" value="<?=$transfer['callback'] ?? ''?>" required
+                                                                            name="callback" value="<?=$transfer['callback'] ?? ''?>"
                                                                             placeholder="Vui lòng nhập link api bank">
                                                                     </div>
                                                                 </div>
@@ -271,11 +271,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 api-bank">
+                        <div class="col-lg-12 api-bank" style="display: none;">
                             <div class="form-group">
                                 <label class="form-label" for="stk">API Bank (<b class="text-danger">*</b>)</label>
                                 <div class="form-control-wrap">
-                                    <input type="url" class="form-control" name="callback" required
+                                    <input type="url" class="form-control" name="callback"
                                         placeholder="Vui lòng nhập link api bank">
                                 </div>
                             </div>

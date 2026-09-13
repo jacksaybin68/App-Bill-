@@ -235,80 +235,30 @@ if (isset($_POST['ws-setting-callback'])) {
 }
 if (isset($_POST['action']) && $_POST['action'] === 'add-transfer-bank') {
     CheckRankAndSession::TD($user, $taikhoan);
-    $nganhang = $_POST["ten-ngan-hang"];
-    $chutaikhoan = $_POST["chu-tai-khoan"];
-    $stk = $_POST["stk"];
-    $kieubank = $_POST["kieubank"];
-    $callback = $_POST["callback"];
-    if (!empty($callback) && !valid_url($callback)) {
+    $nganhang = trim($_POST["ten-ngan-hang"] ?? '');
+    $chutaikhoan = trim($_POST["chu-tai-khoan"] ?? '');
+    $stk = trim($_POST["stk"] ?? '');
+    $kieubank = trim($_POST["kieubank"] ?? '');
+    $callback = trim($_POST["callback"] ?? '');
+
+    if (empty($nganhang) || empty($chutaikhoan) || empty($stk) || empty($kieubank)) {
         exit(JSON_FORMATTER([
             'status' => -1,
-            'msg' => "API Bank không đúng định dạng!"
+            'msg' => "Vui lòng nhập đầy đủ thông tin bắt buộc!"
         ]));
-    }
-    $file_db = $_SERVER['DOCUMENT_ROOT'].'/server/models/object/admin/list.bank.db';
-    if (file_exists($file_db)) {
-        $data = file_get_contents($file_db);
-        $banks = json_decode($data, true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            exit(JSON_FORMATTER([
-                'status' => -1,
-                'msg' => "Lỗi: ".json_last_error_msg()
-            ]));
-        }
-    } else {
-        exit(JSON_FORMATTER([
-            'status' => -1,
-            'msg' => "Không thể tìm thấy file list.bank.db!"
-        ]));
-    }
-    foreach ($banks['data'] as $bank) {
-        if ($bank['shortName'] === $nganhang) {
-            $logo = $bank['logo'] ?? '';
-            break;
-        }
-    }
-    if ($nganhang === "Momo") {
-        $logo = 'https://i.imgur.com/AbtjoUD.png';
     }
 
-    if (($vtd = $thanhdieudb->prepare("SELECT 1 FROM ws_transfer WHERE stk = ?")) && $vtd->bind_param("s", $stk) && $vtd->execute() && $vtd->get_result()->num_rows > 0) {
-        exit(JSON_FORMATTER([
-            'status' => -1,
-            'msg' => "Số tài khoản hoặc ngân hàng đã tồn tại!"
-        ]));
-    } else {
-        $vtd = $thanhdieudb->prepare("INSERT INTO ws_transfer (stk, chutaikhoan, nganhang, logo, callback, kieubank) VALUES (?, ?, ?, ?, ?, ?)");
-        $vtd->bind_param("ssssss", $stk, $chutaikhoan, $nganhang, $logo, $callback, $kieubank);
-        if ($vtd->execute()) {
-            exit(JSON_FORMATTER([
-                'status' => 200,
-                'msg' => "Thêm ngân hàng mới thành công!"
-            ]));
-        } else {
+    if ($kieubank === 'tudong') {
+        if (empty($callback) || !valid_url($callback)) {
             exit(JSON_FORMATTER([
                 'status' => -1,
-                'msg' => "Không thể thêm ngân hàng chuyển khoản."
+                'msg' => "Link API Bank không hợp lệ!"
             ]));
         }
-    }
-}
-if (isset($_POST['action']) && $_POST['action'] === 'edit-transfer-bank') {
-    CheckRankAndSession::TD($user, $taikhoan);
-    $transfer_id = $_POST["transfer-id"];
-    $nganhang = $_POST["ten-ngan-hang"];
-    $chutaikhoan = $_POST["chu-tai-khoan"];
-    $stk = $_POST["stk"];
-    $kieubank = $_POST["kieubank"];
-    $callback = $_POST["callback"];
-    if (!empty($callback) && !valid_url($callback)) {
-        exit(JSON_FORMATTER([
-            'status' => -1,
-            'msg' => "API Bank không đúng định dạng!"
-        ]));
-    } elseif($kieubank==='thucong') {
+    } else {
         $callback = NULL;
     }
+
     $file_db = $_SERVER['DOCUMENT_ROOT'].'/server/models/object/admin/list.bank.db';
     if (file_exists($file_db)) {
         $data = file_get_contents($file_db);
@@ -328,7 +278,91 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit-transfer-bank') {
     $logo = '';
     if (isset($banks['data']) && is_array($banks['data'])) {
         foreach ($banks['data'] as $bank) {
-            if ($bank['shortName'] === $nganhang) {
+            if (($bank['shortName'] ?? '') === $nganhang) {
+                $logo = $bank['logo'] ?? '';
+                break;
+            }
+        }
+    }
+    if ($nganhang === "Momo") {
+        $logo = 'https://i.imgur.com/AbtjoUD.png';
+    }
+
+    if (($vtd = $thanhdieudb->prepare("SELECT 1 FROM ws_transfer WHERE stk = ? AND nganhang = ?")) && $vtd->bind_param("ss", $stk, $nganhang) && $vtd->execute() && $vtd->get_result()->num_rows > 0) {
+        exit(JSON_FORMATTER([
+            'status' => -1,
+            'msg' => "Số tài khoản thuộc ngân hàng này đã tồn tại trong hệ thống!"
+        ]));
+    } else {
+        $vtd = $thanhdieudb->prepare("INSERT INTO ws_transfer (stk, chutaikhoan, nganhang, logo, callback, kieubank) VALUES (?, ?, ?, ?, ?, ?)");
+        $vtd->bind_param("ssssss", $stk, $chutaikhoan, $nganhang, $logo, $callback, $kieubank);
+        if ($vtd->execute()) {
+            exit(JSON_FORMATTER([
+                'status' => 200,
+                'msg' => "Thêm ngân hàng mới thành công!"
+            ]));
+        } else {
+            exit(JSON_FORMATTER([
+                'status' => -1,
+                'msg' => "Không thể thêm ngân hàng chuyển khoản."
+            ]));
+        }
+    }
+}
+if (isset($_POST['action']) && $_POST['action'] === 'edit-transfer-bank') {
+    CheckRankAndSession::TD($user, $taikhoan);
+    $transfer_id = intval($_POST["transfer-id"] ?? 0);
+    $nganhang = trim($_POST["ten-ngan-hang"] ?? '');
+    $chutaikhoan = trim($_POST["chu-tai-khoan"] ?? '');
+    $stk = trim($_POST["stk"] ?? '');
+    $kieubank = trim($_POST["kieubank"] ?? '');
+    $callback = trim($_POST["callback"] ?? '');
+
+    if ($transfer_id <= 0 || empty($nganhang) || empty($chutaikhoan) || empty($stk) || empty($kieubank)) {
+        exit(JSON_FORMATTER([
+            'status' => -1,
+            'msg' => "Vui lòng nhập đầy đủ thông tin bắt buộc!"
+        ]));
+    }
+
+    if ($kieubank === 'tudong') {
+        if (empty($callback) || !valid_url($callback)) {
+            exit(JSON_FORMATTER([
+                'status' => -1,
+                'msg' => "Link API Bank không hợp lệ!"
+            ]));
+        }
+    } else {
+        $callback = NULL;
+    }
+
+    if (($vtd_check = $thanhdieudb->prepare("SELECT 1 FROM ws_transfer WHERE stk = ? AND nganhang = ? AND transfer_id != ?")) && $vtd_check->bind_param("ssi", $stk, $nganhang, $transfer_id) && $vtd_check->execute() && $vtd_check->get_result()->num_rows > 0) {
+        exit(JSON_FORMATTER([
+            'status' => -1,
+            'msg' => "Số tài khoản thuộc ngân hàng này đã tồn tại!"
+        ]));
+    }
+
+    $file_db = $_SERVER['DOCUMENT_ROOT'].'/server/models/object/admin/list.bank.db';
+    if (file_exists($file_db)) {
+        $data = file_get_contents($file_db);
+        $banks = json_decode($data, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            exit(JSON_FORMATTER([
+                'status' => -1,
+                'msg' => "Lỗi: ".json_last_error_msg()
+            ]));
+        }
+    } else {
+        exit(JSON_FORMATTER([
+            'status' => -1,
+            'msg' => "Không thể tìm thấy file list.bank.db!"
+        ]));
+    }
+    $logo = '';
+    if (isset($banks['data']) && is_array($banks['data'])) {
+        foreach ($banks['data'] as $bank) {
+            if (($bank['shortName'] ?? '') === $nganhang) {
                 $logo = $bank['logo'] ?? '';
                 break;
             }
@@ -348,7 +382,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit-transfer-bank') {
     } else {
         exit(JSON_FORMATTER((["status" => -1, "msg" => "Có lỗi xảy ra khi cập nhật ngân hàng."])));
     }
-    }
+}
 if (isset($_POST['truncate_transfer'])) {
     CheckRankAndSession::TD($user, $taikhoan);
     if ($thanhdieudb->query("SELECT COUNT(*) FROM ws_transfer")->fetch_row()[0] > 0) {

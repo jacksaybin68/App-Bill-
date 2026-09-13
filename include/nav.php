@@ -185,8 +185,70 @@
                         </li>
                     </ul>
                 </div>
+            <li>
+                <div class="group">
+                    <button data-menu="sub-menu"
+                        class="nui-focus text-muted-500 dark:text-muted-400/80 hover:bg-muted-100 dark:hover:bg-muted-700/60 hover:text-muted-600 dark:hover:text-muted-200 flex w-full cursor-pointer items-center rounded-lg py-3 transition-colors duration-300 gap-4 px-4">
+                        <img src="/<?=__IMG__?>/icon/menu/support.png" width="20" alt="Icon Menu">
+                        <span class="block whitespace-nowrap font-sans text-sm block">Công Cụ Tiện Ích</span>
+                        <span class="ms-auto items-center justify-center flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img"
+                                class="icon size-4 transition-transform duration-200 rotate-180" width="1em"
+                                height="1em" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m18 15l-6-6l-6 6"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul data-menu="sub-menu"
+                        class="border-muted-200 relative block ps-4 max-h-0 overflow-hidden opacity-0 transition-all duration-150">
+                        <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
+                            <a href="/tools/obfuscate-javascript"
+                                class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
+                                <i class="ri-git-commit-line"></i>
+                                <span class="whitespace-nowrap font-sans text-[0.85rem] block">Obfuscate JavaScript</span>
+                            </a>
+                        </li>
+                        <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
+                            <a href="/tools/encoder-php-online"
+                                class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
+                                <i class="ri-git-commit-line"></i>
+                                <span class="whitespace-nowrap font-sans text-[0.85rem] block">Mã Hóa PHP Online</span>
+                            </a>
+                        </li>
+                        <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
+                            <a href="/tools/spam-sms"
+                                class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
+                                <i class="ri-git-commit-line"></i>
+                                <span class="whitespace-nowrap font-sans text-[0.85rem] block">Spam SMS / Call</span>
+                            </a>
+                        </li>
+                        <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
+                            <a href="/tools/spam-ngl-link"
+                                class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
+                                <i class="ri-git-commit-line"></i>
+                                <span class="whitespace-nowrap font-sans text-[0.85rem] block">Spam NGL Link</span>
+                            </a>
+                        </li>
+                        <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
+                            <a href="/tools/tao-subdomain-mien-phi"
+                                class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
+                                <i class="ri-git-commit-line"></i>
+                                <span class="whitespace-nowrap font-sans text-[0.85rem] block">Tạo Subdomain Miễn Phí</span>
+                            </a>
+                        </li>
+                        <li class="border-muted-300 dark:border-muted-700 ms-2 border-s-2 first:mt-2">
+                            <a href="/tools/scan-info-facebook"
+                                class="router-link-active nui-focus text-muted-500 hover:text-muted-600 dark:text-muted-400/80 dark:hover:text-muted-200 relative -start-0.5 flex cursor-pointer items-center gap-2 border-s-2 border-transparent py-2 ps-4 transition-colors duration-300">
+                                <i class="ri-git-commit-line"></i>
+                                <span class="whitespace-nowrap font-sans text-[0.85rem] block">Tra Cứu Info Facebook</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
-                        <li>
+            <li>
                 <div class="group">
                     <button data-menu="sub-menu"
                         class="nui-focus text-muted-500 dark:text-muted-400/80 hover:bg-muted-100 dark:hover:bg-muted-700/60 hover:text-muted-600 dark:hover:text-muted-200 flex w-full cursor-pointer items-center rounded-lg py-3 transition-colors duration-300 gap-4 px-4">
