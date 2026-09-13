@@ -8,14 +8,14 @@ ErrorDocument 403 /client/layout/pages/global/error/404.php
 ErrorDocument 504 /client/layout/pages/global/error/504.php
 RewriteCond %{ENV:REDIRECT_STATUS} 403
 RewriteRule ^ - [L]
-RewriteRule ^obf-alom/download/(.*)$ /function/obf-php/alom/download/$1 [L]
+# RewriteRule ^obf-alom/download/(.*)$ /function/obf-php/alom/download/$1 [L]
 #==============================#
 # Assign Index
 #==============================#
 RewriteRule ^install(|/)$ /client/layout/pages/install/ [L]
 RewriteRule ^trang-chu$ /dash.php [L]
 #RewriteRule ^xac-minh-email$ /client/layout/pages/global/menu/verify-email.php [L]
-RewriteRule ^thong-tin-thanh-toan$ /client/layout/pages/global/menu/tttt.php [L]
+RewriteRule ^thong-tin-thanh-toan$ /client/layout/pages/global/menu/nap-tien.php [L]
 RewriteRule ^fake-bill-chuyen-khoan$ /client/layout/pages/global/menu/fakebill.php [L]
 RewriteRule ^fake-bill-priority$ /client/layout/pages/global/menu/fake-bill-priority.php [L]
 RewriteRule ^fake-so-du$ /client/layout/pages/global/menu/fakesodu.php [L]
@@ -131,7 +131,6 @@ RewriteRule ^fake-velenmaybay$ /client/layout/pages/global/sub-page/giay-to/vele
 RewriteRule ^fake-velenmaybay2$ /client/layout/pages/global/sub-page/giay-to/velenmaybay2.php [L]
 RewriteRule ^fake-velenmaybay3$ /client/layout/pages/global/sub-page/giay-to/velenmaybay3.php [L]
 RewriteRule ^fake-vedientu$ /client/layout/pages/global/sub-page/giay-to/vedientu.php [L]
-RewriteRule ^fake-giayphepkinhdoanh$ /client/layout/pages/global/sub-page/giay-to/giayphepkinhdoanh.php [L]
 RewriteRule ^tools/spam-sms$ /client/layout/pages/global/sub-page/tools/spam-sms.php [L]
 # RewriteRule ^tools/obfuscate-javascript$ /client/layout/pages/global/sub-page/tools/obf-js.php [L]
 RewriteRule ^tools/spam-ngl-link$ /client/layout/pages/global/sub-page/tools/spam-ngl.php [L]
@@ -139,7 +138,7 @@ RewriteRule ^tools/spam-ngl-link$ /client/layout/pages/global/sub-page/tools/spa
 # RewriteRule ^tools/tao-subdomain-mien-phi$ /client/layout/pages/global/sub-page/tools/generator-subdomain.php [L]
 #RewriteRule ^tiktok/tang-luot-xem-mien-phi$ /client/layout/pages/global/sub-page/social/tiktok/buff-view.php [L]
 RewriteRule ^bad-error$ /client/layout/pages/global/error/bad-error.php [L]
-RewriteRule ^download/([a-fA-F0-9]{32})/?$ /function/insert/protect/verify.php?code=$1 [L]
+RewriteRule ^download/([a-fA-F0-9]{32})/?$ /client/layout/pages/global/error/404.php?code=$1 [L]
 #==============================#
 # Assign Users
 #==============================#
@@ -163,7 +162,7 @@ RewriteRule ^admin/create/product$ /admin/add-product.php [L]
 RewriteRule ^admin/product/list$ /admin/product-list.php [L]
 #RewriteRule ^admin/history/product$ /admin/history-product.php [L]
 RewriteRule ^admin/users/list$ /admin/user-list.php [L]
-RewriteRule ^admin/users/banned$ /admin/user-banned.php [L]
+# RewriteRule ^admin/users/banned$ /admin/user-banned.php [L]
 RewriteRule ^admin/history/bank$ /admin/bank.php [L]
 RewriteRule ^admin/history/card$ /admin/card.php [L]
 RewriteRule ^admin/manager/payment$ /admin/payment.php [L]
@@ -172,9 +171,9 @@ RewriteRule ^admin/manager/plan$ /admin/plan.php [L]
 RewriteRule ^admin/history/plan$ /admin/history-plan.php [L]
 RewriteRule ^admin/users/edit/([0-9a-zA-Z]+)$ /admin/edit-user.php [L]
 RewriteRule ^admin/history/bill$ /admin/bill.php [L]
-RewriteRule ^admin/cron-jobs$ /admin/cron-jobs.php [L]
+# RewriteRule ^admin/cron-jobs$ /admin/cron-jobs.php [L]
 RewriteRule ^admin/settings(/.*)?$ /admin/settings.php [L]
-RewriteRule ^admin/tutorial-of-admin$ /admin/tutorial.php [L]
+# RewriteRule ^admin/tutorial-of-admin$ /admin/tutorial.php [L]
 #==============================#s
 # Assign API
 #==============================#
@@ -182,7 +181,7 @@ RewriteRule ^call-back/api/auto-bank$ /function/call-back/api/auto-bank.php [L]
 RewriteRule ^call-back/api/n$ /function/call-back/api/notify.ini.php [L]
 RewriteRule ^call-back/api/payment$ /function/call-back/api/payment.php [L]
 RewriteRule ^call-back/api/card5s$ /function/call-back/api/card5s.php [L]
-RewriteRule ^call-back/api/thesieure$ /function/call-back/api/thesieure.php [L]
+# RewriteRule ^call-back/api/thesieure$ /function/call-back/api/thesieure.php [L]
 RewriteRule ^call-back/api/spam-sms$ /function/call-back/api/spam-sms.php [L]
 RewriteRule ^call-back/api/spam-ngl$ /function/call-back/api/spam-ngl.php [L]
 RewriteRule ^call-back/api/delete-subdomain$ /function/call-back/api/delete-subdomain.php [L]
@@ -198,7 +197,7 @@ RewriteRule ^ajax/global/admin$ /app/ajax/global/admin/ajax-admin.php [L]
 RewriteRule ^ajax/global/default$ /app/ajax/global/default/ws-demo.php [L]
 RewriteRule ^ajax/global/default/stats$ /app/ajax/global/default/stats.php [L]
 RewriteRule ^ajax/global/installer$ /app/ajax/global/default/installer.php [L]
-RewriteRule ^ajax/global/download$ /app/ajax/global/default/download.php [L]
+# RewriteRule ^ajax/global/download$ /app/ajax/global/default/download.php [L]
 #==============================#
 <FilesMatch "(install\.lock|fakebill\.sql|robots\.txt)">
     Order allow,deny
