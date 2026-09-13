@@ -124,7 +124,7 @@ class THANHDIEUSTART extends DatabaseConnection
      */
     public function getIPClient()
     {
-        return $_SERVER["REMOTE_ADDR"];
+        return $_SERVER["REMOTE_ADDR"] ?? '127.0.0.1';
     }
 
     /**
@@ -1599,9 +1599,10 @@ class BrowserSupport
 
     private function detect()
     {
+        $userAgent = $_SERVER["HTTP_USER_AGENT"] ?? '';
         preg_match(
             "#(".implode("|", $this->browsers).")(/| )([^ ]+)#i",
-            $_SERVER["HTTP_USER_AGENT"],
+            $userAgent,
             $match
         );
 
@@ -2673,19 +2674,25 @@ class BlacklistChecker extends DatabaseConnection
      */
     public function blacklist($ip, $TD)
     {
+        if (empty($ip)) {
+            return;
+        }
         $checkbanip = self::ThanhDieuDB()->query(
             "SELECT `black-ip` FROM ws_settings"
         );
-        if ($checkbanip->num_rows > 0) {
+        if ($checkbanip && $checkbanip->num_rows > 0) {
             while ($row = $checkbanip->fetch_assoc()) {
-                if (in_array($ip, explode("|", $row["black-ip"]))) {
-                    $message =
-                    '<pre>Your IP has been blacklisted, if you need support, contact us <a href="' .
-                    $TD->Setting("telegram") .
-                        '" target="_blank">here</a></pre>.';
-                    http_response_code(403);
-                    header("HTTP/1.1 403 Forbidden");
-                    die($message);
+                if (!empty($row["black-ip"])) {
+                    $bannedIps = array_filter(array_map('trim', explode("|", $row["black-ip"])));
+                    if (in_array($ip, $bannedIps, true)) {
+                        $message =
+                        '<pre>Your IP has been blacklisted, if you need support, contact us <a href="' .
+                        $TD->Setting("telegram") .
+                            '" target="_blank">here</a></pre>.';
+                        http_response_code(403);
+                        header("HTTP/1.1 403 Forbidden");
+                        die($message);
+                    }
                 }
             }
         }
