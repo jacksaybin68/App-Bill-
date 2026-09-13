@@ -309,7 +309,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit-transfer-bank') {
     } elseif($kieubank==='thucong') {
         $callback = NULL;
     }
-    $file_db = $_SERVER['DOCUMENT_ROOT'].'/models/object/admin/list.bank.db';
+    $file_db = $_SERVER['DOCUMENT_ROOT'].'/server/models/object/admin/list.bank.db';
     if (file_exists($file_db)) {
         $data = file_get_contents($file_db);
         $banks = json_decode($data, true);
@@ -325,26 +325,29 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit-transfer-bank') {
             'msg' => "Không thể tìm thấy file list.bank.db!"
         ]));
     }
-    foreach ($banks['data'] as $bank) {
-        if ($bank['shortName'] === $nganhang) {
-            $logo = $bank['logo'] ?? '';
-            break;
+    $logo = '';
+    if (isset($banks['data']) && is_array($banks['data'])) {
+        foreach ($banks['data'] as $bank) {
+            if ($bank['shortName'] === $nganhang) {
+                $logo = $bank['logo'] ?? '';
+                break;
+            }
         }
     }
     if ($nganhang === "Momo") {
         $logo = 'https://i.imgur.com/AbtjoUD.png';
     }
 
-    if ($vtd = $thanhdieudb->prepare("UPDATE ws_transfer SET `nganhang`=?, `logo`=?, `chutaikhoan`=?,`stk`=? ,`kieubank`=? ,`callback`=? WHERE `transfer_id`='$transfer_id'")) {
-            $vtd->bind_param("ssssss", $nganhang, $logo, $chutaikhoan, $stk, $kieubank,$callback);
-            if ($vtd->execute()) {
-                exit(JSON_FORMATTER((["status" => 200, "msg" => 'Thông tin đã được cập nhật.'])));
-            } else {
-                exit(JSON_FORMATTER((["status" => -1, "msg" => "Cập nhật thất bại: <br/>".$vtd->error])));
-            }
+    if ($vtd = $thanhdieudb->prepare("UPDATE ws_transfer SET `nganhang`=?, `logo`=?, `chutaikhoan`=?, `stk`=?, `kieubank`=?, `callback`=? WHERE `transfer_id`=?")) {
+        $vtd->bind_param("ssssssi", $nganhang, $logo, $chutaikhoan, $stk, $kieubank, $callback, $transfer_id);
+        if ($vtd->execute()) {
+            exit(JSON_FORMATTER((["status" => 200, "msg" => 'Thông tin đã được cập nhật.'])));
         } else {
-            exit(JSON_FORMATTER((["status" => -1, "msg" => "Có lỗi xảy ra khi cập nhật ngân hàng."])));
+            exit(JSON_FORMATTER((["status" => -1, "msg" => "Cập nhật thất bại: <br/>".$vtd->error])));
         }
+    } else {
+        exit(JSON_FORMATTER((["status" => -1, "msg" => "Có lỗi xảy ra khi cập nhật ngân hàng."])));
+    }
     }
 if (isset($_POST['truncate_transfer'])) {
     CheckRankAndSession::TD($user, $taikhoan);
