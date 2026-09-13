@@ -220,7 +220,7 @@ $map = [
     // Quản trị Admin
     '/admin/dashboard'                         => '/admin/index.php',
     '/admin/users/list'                        => '/admin/user-list.php',
-    // '/admin/users/banned'                   => '/admin/user-banned.php',
+    '/admin/users/banned'                      => '/admin/user-banned.php',
     '/admin/create/product'                    => '/admin/add-product.php',
     '/admin/product/list'                      => '/admin/product-list.php',
     '/admin/create/newfeeds'                   => '/admin/add-newfeeds.php',
@@ -232,9 +232,9 @@ $map = [
     '/admin/manager/payment'                   => '/admin/payment.php',
     '/admin/manager/plan'                      => '/admin/plan.php',
     '/admin/activity/log'                      => '/admin/activity.php',
-    // '/admin/cron-jobs'                      => '/admin/cron-jobs.php',
+    '/admin/cron-jobs'                         => '/admin/cron-jobs.php',
     '/admin/settings'                          => '/admin/settings.php',
-    // '/admin/tutorial-of-admin'              => '/admin/tutorial.php',
+    '/admin/tutorial-of-admin'                 => '/admin/tutorial.php',
     '/admin/auth/logout'                       => '/admin/auth/logout.php',
 
     // Ajax Endpoints
@@ -243,14 +243,14 @@ $map = [
     '/ajax/global/default'                     => '/app/ajax/global/default/ws-demo.php',
     '/ajax/global/default/stats'               => '/app/ajax/global/default/stats.php',
     '/ajax/global/installer'                   => '/app/ajax/global/default/installer.php',
-    // '/ajax/global/download'                 => '/app/ajax/global/default/download.php',
+    '/ajax/global/download'                    => '/app/ajax/global/default/download.php',
 
     // Callbacks & Webhooks & API
     '/call-back/api/auto-bank'                 => '/function/call-back/api/auto-bank.php',
     '/call-back/api/n'                         => '/function/call-back/api/notify.ini.php',
     '/call-back/api/payment'                   => '/function/call-back/api/payment.php',
     '/call-back/api/card5s'                    => '/function/call-back/api/card5s.php',
-    // '/call-back/api/thesieure'               => '/function/call-back/api/thesieure.php',
+    '/call-back/api/thesieure'                 => '/function/call-back/api/thesieure.php',
     '/call-back/api/spam-sms'                  => '/function/call-back/api/spam-sms.php',
     '/call-back/api/spam-ngl'                  => '/function/call-back/api/spam-ngl.php',
     '/call-back/api/delete-subdomain'          => '/function/call-back/api/delete-subdomain.php',
@@ -289,7 +289,7 @@ $dynamic = [
     ],
     // Tải tệp bảo vệ: /download/{code}
     '#^/download/([a-fA-F0-9]{32})/?$#' => [
-        'file' => '/client/layout/pages/global/error/404.php',
+        'file' => '/function/insert/protect/verify.php',
         'params' => ['code']
     ],
 ];
