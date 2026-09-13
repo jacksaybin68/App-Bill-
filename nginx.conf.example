@@ -1,0 +1,286 @@
+# ==============================================================================
+# Cấu hình Nginx tối ưu cho dự án BillDAYROI trên Ubuntu VPS (187.127.215.214)
+# File: /etc/nginx/sites-available/billdayroi.online
+# ==============================================================================
+
+server {
+    listen 80;
+    listen [::]:80;
+    
+    server_name billdayroi.online www.billdayroi.online bildayroi.online www.bildayroi.online;
+    
+    # Đường dẫn thư mục mã nguồn dự án trên VPS (thay đổi nếu bạn đặt thư mục khác)
+    root /var/www/billviet;
+    index index.php dash.php index.html;
+
+    charset utf-8;
+    client_max_body_size 64M;
+
+    # Gzip Compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_proxied any;
+    gzip_types text/plain text/css text/xml application/json application/javascript application/xml+rss application/atom+xml image/svg+xml;
+
+    # Security Headers
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # ==========================================================================
+    # 1. BẢO VỆ CÁC FILE NHẠY CẢM (Chặn tuyệt đối truy cập từ bên ngoài)
+    # ==========================================================================
+    location ~* /\.(env|git|htaccess|kilo|aicode|aider) {
+        deny all;
+        return 404;
+    }
+
+    location ~* \.(sql|lock|ini|log|sh|md)$ {
+        deny all;
+        return 404;
+    }
+
+    # ==========================================================================
+    # 2. REWRITE RULES (Mô phỏng toàn bộ .htaccess)
+    # ==========================================================================
+    
+    # Trang chủ & Dashboard
+    location = / {
+        rewrite ^ /dash.php last;
+    }
+
+    location = /trang-chu {
+        rewrite ^/trang-chu$ /dash.php last;
+    }
+
+    location ^~ /install {
+        rewrite ^/install(|/)$ /client/layout/pages/install/index.php last;
+    }
+
+    # OAuth / Auth
+    location ~ ^/oauth/(dang-nhap|login|signIn)$ {
+        rewrite ^ /client/layout/pages/auth/dang-nhap.php last;
+    }
+    location ~ ^/oauth/(dang-ky|register|signUp)$ {
+        rewrite ^ /client/layout/pages/auth/dang-ky.php last;
+    }
+    location ~ ^/oauth/(dang-xuat|logout|kill-log)$ {
+        rewrite ^ /client/layout/pages/auth/dang-xuat.php last;
+    }
+    location ~ ^/oauth/(quen-mat-khau|forgot-password|recover-password)$ {
+        rewrite ^ /client/layout/pages/auth/quen-mat-khau.php last;
+    }
+
+    # Menu chính & Nạp tiền
+    location = /thong-tin-thanh-toan {
+        rewrite ^ /client/layout/pages/global/menu/tttt.php last;
+    }
+    location ~ ^/nap-tien/([^/]+)/(send|transfer)$ {
+        rewrite ^ /client/layout/pages/global/menu/nap-tien.php last;
+    }
+    location = /nap-tien/the-cao {
+        rewrite ^ /client/layout/pages/global/menu/the-cao.php last;
+    }
+    location = /thong-tin-goi {
+        rewrite ^ /client/layout/pages/global/menu/info-vip.php last;
+    }
+    location = /thue-goi {
+        rewrite ^ /client/layout/pages/global/menu/thue-goi.php last;
+    }
+    location = /thue-app-bank-ao {
+        rewrite ^ /client/layout/pages/global/menu/thue-app-bank-ao.php last;
+    }
+
+    # Fake Bill
+    location = /fake-bill-chuyen-khoan {
+        rewrite ^ /client/layout/pages/global/menu/fakebill.php last;
+    }
+    location = /fake-bill-priority {
+        rewrite ^ /client/layout/pages/global/menu/fake-bill-priority.php last;
+    }
+    location = /fake-so-du {
+        rewrite ^ /client/layout/pages/global/menu/fakesodu.php last;
+    }
+    location = /fake-bdsd {
+        rewrite ^ /client/layout/pages/global/menu/fakebiendong.php last;
+    }
+    location ~ ^/fake-bill/(.*)$ {
+        rewrite ^/fake-bill/(.*)$ /client/layout/pages/global/sub-page/bill/$1.php last;
+    }
+    location ~ ^/fake-bill/man-hinh-khoa/(.*)$ {
+        rewrite ^/fake-bill/man-hinh-khoa/(.*)$ /client/layout/pages/global/sub-page/man-hinh-khoa/$1.php last;
+    }
+
+    # Danh mục mã nguồn
+    location ~ ^/danh-muc/ma-nguon/?$ {
+        rewrite ^ /client/layout/pages/global/menu/ma-nguon.php?page=1 last;
+    }
+    location ~ ^/danh-muc/ma-nguon/trang/([0-9]+)/?$ {
+        rewrite ^/danh-muc/ma-nguon/trang/([0-9]+)/?$ /client/layout/pages/global/menu/ma-nguon.php?page=$1 last;
+    }
+    location ~ ^/(view-code|details)/([^/]+)$ {
+        rewrite ^ /client/layout/pages/global/menu/chi-tiet-ma-nguon.php last;
+    }
+
+    # Lịch sử
+    location = /lich-su/nap-tien {
+        rewrite ^ /client/layout/pages/global/menu/lich-su-nap-tien.php last;
+    }
+    location = /lich-su/mua-goi {
+        rewrite ^ /client/layout/pages/global/menu/lich-su-mua-goi.php last;
+    }
+    location = /lich-su/mua-hang {
+        rewrite ^ /client/layout/pages/global/menu/lich-su-mua-hang.php last;
+    }
+    location = /lich-su/tao-bill {
+        rewrite ^ /client/layout/pages/global/menu/lich-su-tao-bill.php last;
+    }
+    location = /lich-su/thue-bank {
+        rewrite ^ /client/layout/pages/global/menu/lich-su-thue-bank.php last;
+    }
+
+    # Admin Dashboard & Quản trị
+    location = /admin {
+        rewrite ^ /admin/index.php last;
+    }
+    location = /admin/dashboard {
+        rewrite ^ /admin/index.php last;
+    }
+    location = /admin/auth/logout {
+        rewrite ^ /admin/auth/logout.php last;
+    }
+    location = /admin/create/newfeeds {
+        rewrite ^ /admin/add-newfeeds.php last;
+    }
+    location = /admin/newfeeds/list {
+        rewrite ^ /admin/newfeeds-list.php last;
+    }
+    location = /admin/create/product {
+        rewrite ^ /admin/add-product.php last;
+    }
+    location = /admin/product/list {
+        rewrite ^ /admin/product-list.php last;
+    }
+    location = /admin/users/list {
+        rewrite ^ /admin/user-list.php last;
+    }
+    location = /admin/users/banned {
+        rewrite ^ /admin/user-banned.php last;
+    }
+    location = /admin/history/bank {
+        rewrite ^ /admin/bank.php last;
+    }
+    location = /admin/history/card {
+        rewrite ^ /admin/card.php last;
+    }
+    location = /admin/manager/payment {
+        rewrite ^ /admin/payment.php last;
+    }
+    location = /admin/activity/log {
+        rewrite ^ /admin/activity.php last;
+    }
+    location = /admin/manager/plan {
+        rewrite ^ /admin/plan.php last;
+    }
+    location = /admin/history/plan {
+        rewrite ^ /admin/history-plan.php last;
+    }
+    location ~ ^/admin/users/edit/([0-9a-zA-Z]+)$ {
+        rewrite ^ /admin/edit-user.php last;
+    }
+    location = /admin/history/bill {
+        rewrite ^ /admin/bill.php last;
+    }
+    location = /admin/cron-jobs {
+        rewrite ^ /admin/cron-jobs.php last;
+    }
+    location ~ ^/admin/settings(/.*)?$ {
+        rewrite ^ /admin/settings.php last;
+    }
+    location = /admin/tutorial-of-admin {
+        rewrite ^ /admin/tutorial.php last;
+    }
+
+    # Callbacks API & Cron
+    location = /call-back/api/auto-bank {
+        rewrite ^ /function/call-back/api/auto-bank.php last;
+    }
+    location = /call-back/api/n {
+        rewrite ^ /function/call-back/api/notify.ini.php last;
+    }
+    location = /call-back/api/payment {
+        rewrite ^ /function/call-back/api/payment.php last;
+    }
+    location = /call-back/api/card5s {
+        rewrite ^ /function/call-back/api/card5s.php last;
+    }
+    location = /call-back/api/thesieure {
+        rewrite ^ /function/call-back/api/thesieure.php last;
+    }
+    location = /call-back/api/spam-sms {
+        rewrite ^ /function/call-back/api/spam-sms.php last;
+    }
+    location = /call-back/api/spam-ngl {
+        rewrite ^ /function/call-back/api/spam-ngl.php last;
+    }
+    location = /cron-jobs/global {
+        rewrite ^ /function/cron/global.php last;
+    }
+    location = /log {
+        rewrite ^ /function/call-back/controller/log.php last;
+    }
+
+    # Ajax Endpoints
+    location = /ajax/global/users {
+        rewrite ^ /app/ajax/global/users/ajax-user.php last;
+    }
+    location = /ajax/global/admin {
+        rewrite ^ /app/ajax/global/admin/ajax-admin.php last;
+    }
+    location = /ajax/global/default {
+        rewrite ^ /app/ajax/global/default/ws-demo.php last;
+    }
+    location = /ajax/global/default/stats {
+        rewrite ^ /app/ajax/global/default/stats.php last;
+    }
+    location = /ajax/global/installer {
+        rewrite ^ /app/ajax/global/default/installer.php last;
+    }
+    location = /ajax/global/download {
+        rewrite ^ /app/ajax/global/default/download.php last;
+    }
+
+    # Fallback cho tất cả các đường dẫn khác qua router.php
+    location / {
+        try_files $uri $uri/ @router;
+    }
+
+    location @router {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root/router.php;
+        fastcgi_param SCRIPT_NAME /router.php;
+        fastcgi_param HTTPS $https if_not_empty;
+        fastcgi_param HTTP_X_FORWARDED_PROTO $scheme;
+    }
+
+    # Cache tài nguyên tĩnh (CSS, JS, Ảnh, Font)
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|woff|woff2|ttf|svg|eot)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+        access_log off;
+    }
+
+    # Xử lý PHP Scripts
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock; # Lưu ý kiểm tra phiên bản PHP trên VPS: php -v
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+
+        # Truyền đúng scheme cho PHP khi chạy sau SSL / Nginx
+        fastcgi_param HTTPS $https if_not_empty;
+        fastcgi_param HTTP_X_FORWARDED_PROTO $scheme;
+    }
+}
