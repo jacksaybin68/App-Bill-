@@ -3416,6 +3416,8 @@ class Bill extends DatabaseConnection
         "Sodu-Zalopay" => "https://thanhdieu.com/bill/sodu-zalopay.png",
         "Sodu-Acb" => "https://thanhdieu.com/bill/sodu-acb.png",
         "Sodu-MbBank" => "https://thanhdieu.com/bill/sodu-mb.png",
+        "Sodu-Mbnoel" => "/public/src/vtd/img/phoi/bill/sodu-mbnoel.jpg",
+        "Bill-MbBank-Junior" => "/public/src/vtd/img/phoi/bill/mb-junior.png",
         "BDSD-MbBank" => "https://thanhdieu.com/bill/bdsd-mb.png",
         "BDSD-Techcombank" => "https://thanhdieu.com/bill/bdsd-tcb.png",
         "CCCD-MatTruoc" => "https://i.imgur.com/mHtMvOP.jpeg",

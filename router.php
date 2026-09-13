@@ -254,6 +254,7 @@ $map = [
     '/call-back/api/spam-sms'                  => '/function/call-back/api/spam-sms.php',
     '/call-back/api/spam-ngl'                  => '/function/call-back/api/spam-ngl.php',
     '/call-back/api/delete-subdomain'          => '/function/call-back/api/delete-subdomain.php',
+    '/call-back/api/export-credit-adjustments' => '/function/call-back/api/export-credit-adjustments.php',
     '/call-back/lavender'                      => '/function/insert/alert/vip.ini.php',
     '/log'                                     => '/function/call-back/controller/log.php',
     '/cron-jobs/global'                        => '/function/cron/global.php',

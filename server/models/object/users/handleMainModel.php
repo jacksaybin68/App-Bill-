@@ -1,8 +1,7 @@
 <?php
 use Google\Service\PolyService\Format;
 require_once $_SERVER['DOCUMENT_ROOT'].'/tele.config.php';
-header('Content-Type: application/json');
-// require($_SERVER['DOCUMENT_ROOT'].'/models/object/users/generatorSubdomain.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/server/models/object/users/generatorSubdomain.php');
 ThanhDieuPOST(function($payload) 
 {
     extract($GLOBALS);
@@ -379,6 +378,45 @@ if (isset($payload['action']) && $payload['action'] === 'user-generator-subdomai
             exit(JSON_FORMATTER(['status' => -1, 'msg' => $delete_domain['errors'][0]['message'] ?? 'Xoá tên miền thất bại!']));
         }
     }
+}
+if (isset($payload['action']) && $payload['action'] === 'user-scan-info-fb') {
+    if ($SSC->check()) {
+        exit(JSON_FORMATTER(['status' => -1, 'msg' => 'Vui lòng đăng nhập để sử dụng tính năng này!']));
+    }
+    $target = trim($payload['tt'] ?? '');
+    if (empty($target)) {
+        exit(JSON_FORMATTER(['status' => -1, 'msg' => 'Vui lòng nhập UID, SĐT hoặc Email Facebook!']));
+    }
+    $fee = $plans->TD('tengoi', $taikhoan) ? 0 : 2000;
+    if ($fee > 0 && $user['sodu'] < $fee) {
+        exit(JSON_FORMATTER(['status' => -1, 'msg' => 'Số dư không đủ ' . FormatNumber::TD($fee) . 'đ để thực hiện tra cứu info Facebook!']));
+    }
+    $uid = $target;
+    if (preg_match('/facebook\.com\/([a-zA-Z0-9\._]+)/', $target, $m)) {
+        $uid = $m[1];
+    } elseif (preg_match('/profile\.php\?id=([0-9]+)/', $target, $m)) {
+        $uid = $m[1];
+    }
+    $fbUrl = "https://www.facebook.com/" . urlencode($uid);
+    $note = "Tra cứu: " . $target . " | UID: " . $uid;
+    if ($fee > 0) {
+        $sodu_moi = $user['sodu'] - $fee;
+        $vtd = $thanhdieudb->prepare("UPDATE users SET sodu = ?, tongtieu = tongtieu + ? WHERE username = ?");
+        $vtd->bind_param('iis', $sodu_moi, $fee, $taikhoan);
+        $vtd->execute();
+    }
+    $loai = 'facebook';
+    $trangthai = 'success';
+    $vtd = $thanhdieudb->prepare("INSERT INTO ws_scaninfo (username, loai, giatien, ghichu, trangthai, giatri) VALUES (?, ?, ?, ?, ?, ?)");
+    $vtd->bind_param('ssisss', $taikhoan, $loai, $fee, $note, $trangthai, $target);
+    $vtd->execute();
+    $thanhdieudb->query("INSERT INTO ws_logs (username, content, action) VALUES ('$taikhoan', 'Tra cứu Facebook $target', 'Scan Info FB')");
+    $msgResult = "Tìm kiếm thành công thông tin Facebook:\n" .
+                 "• Đầu vào: " . $target . "\n" .
+                 "• UID / Tên người dùng: " . $uid . "\n" .
+                 "• Link cá nhân: " . $fbUrl . "\n" .
+                 "• Trạng thái: Đang hoạt động";
+    exit(JSON_FORMATTER(['status' => 200, 'msg' => $msgResult, 'uid' => $uid, 'url' => $fbUrl]));
 }
 if (isset($payload['action']) && $payload['action'] === 'thue-app-bank-ao') {
     if ($SSC->check()) {

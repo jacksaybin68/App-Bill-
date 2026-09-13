@@ -162,6 +162,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/mbbank-tet.
 */
 require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/mbbank-noel.php');
 /**
+* Fakebill MB Bank Junior
+*/
+require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/mb-junior.php');
+/**
 * Fakebill Vietcombank
 */
 require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/bill/vietcombank.php');
@@ -257,6 +261,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/users/handleMainModel.p
 * Fake Số Dư Mbbank
 */
 require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/sodu/mbbank.php');
+/**
+* Fake Số Dư MB Bank Noel
+*/
+require($_SERVER['DOCUMENT_ROOT'].'/server/models/object/render/sodu/mbnoel.php');
 /**
 * Fake Số Dư Techcombank
 */
