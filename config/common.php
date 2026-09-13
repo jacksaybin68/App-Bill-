@@ -153,7 +153,7 @@ class THANHDIEUSTART extends DatabaseConnection
      */
     public function getWebsiteDomain()
     {
-        return $_SERVER["HTTP_HOST"];
+        return class_exists('DomainManager') ? DomainManager::getCurrentHost() : ($_SERVER["HTTP_HOST"] ?? 'localhost');
     }
 
     /**
@@ -163,7 +163,7 @@ class THANHDIEUSTART extends DatabaseConnection
      */
     public function getCurrentURL()
     {
-        return $_SERVER["REQUEST_URI"];
+        return $_SERVER["REQUEST_URI"] ?? '/';
     }
 
     /**
@@ -173,7 +173,17 @@ class THANHDIEUSTART extends DatabaseConnection
      */
     public function getDomain()
     {
-        return $_SERVER["HTTP_HOST"];
+        return class_exists('DomainManager') ? DomainManager::getCurrentDomain() : ($_SERVER["HTTP_HOST"] ?? 'localhost');
+    }
+
+    /**
+     * Method getBaseURL
+     *
+     * @return mixed
+     */
+    public function getBaseURL()
+    {
+        return class_exists('DomainManager') ? DomainManager::getBaseUrl() : ((!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] !== "off" ? "https" : "http") . "://" . ($_SERVER["HTTP_HOST"] ?? 'localhost'));
     }
 
     /**
@@ -183,8 +193,7 @@ class THANHDIEUSTART extends DatabaseConnection
      */
     public function getFullURL()
     {
-        $scheme = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] !== "off") ? "https" : "http";
-        return $scheme."://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
+        return class_exists('DomainManager') ? DomainManager::getFullUrl() : ($this->getBaseURL() . $this->getCurrentURL());
     }
     /**
      * Method getPHPVersion
@@ -202,7 +211,7 @@ class THANHDIEUSTART extends DatabaseConnection
      */
     public function getServerSoftware()
     {
-        return $_SERVER["SERVER_SOFTWARE"];
+        return $_SERVER["SERVER_SOFTWARE"] ?? 'CLI/Unknown';
     }
     /**
      * Method getMysqliCheck
@@ -1936,7 +1945,7 @@ function isMobile()
 {
     return preg_match(
         "/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|ipad|ipod|pie|tablet|up\.browser|up\.link|webos|wos)/i",
-        $_SERVER["HTTP_USER_AGENT"]
+        $_SERVER["HTTP_USER_AGENT"] ?? ''
     );
 }
 // class Dashboard_MobileDetect {

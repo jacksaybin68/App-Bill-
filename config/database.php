@@ -4,6 +4,10 @@ use Database\Installer;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
+if (empty($_SERVER['DOCUMENT_ROOT'])) {
+    $_SERVER['DOCUMENT_ROOT'] = realpath(__DIR__ . '/..') ?: dirname(__DIR__);
+}
+require_once $_SERVER['DOCUMENT_ROOT'].'/server/services/DomainManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/function/connect/error.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/function/connect/install.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/function/connect/config.ini.php';

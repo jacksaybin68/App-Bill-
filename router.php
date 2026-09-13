@@ -3,6 +3,9 @@
  * Router cho PHP built-in server (php -S ... router.php)
  * Mô phỏng toàn bộ rewrite rules của .htaccess để hỗ trợ đầy đủ các tính năng trong hệ thống.
  */
+if (empty($_SERVER['DOCUMENT_ROOT'])) {
+    $_SERVER['DOCUMENT_ROOT'] = __DIR__;
+}
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $p   = rtrim($uri, '/');
 if ($p === '') { $p = '/'; }

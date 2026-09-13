@@ -1,5 +1,9 @@
 <?php
 header('Content-Type: application/json');
+if (empty($_SERVER['DOCUMENT_ROOT'])) {
+    $_SERVER['DOCUMENT_ROOT'] = realpath(__DIR__ . '/../../../../..') ?: dirname(__DIR__, 5);
+}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/server/services/DomainManager.php';
 
 class ThanhDieuInstaller
 {
@@ -71,9 +75,9 @@ class ThanhDieuInstaller
             $this->create_auth($thanhdieudb);
             $this->secret_key($thanhdieudb);
 
-            if (file_put_contents($_SERVER['DOCUMENT_ROOT'].'/install.lock', $this->domain()) === false) 
+            if (!DomainManager::addDomainToLock($this->domain())) 
             {
-                throw new Exception('Không thể tạo file cấu hình install.lock.');
+                throw new Exception('Không thể cập nhật file cấu hình install.lock.');
             }
 
             $this->response['error'] = 1;
@@ -95,10 +99,17 @@ class ThanhDieuInstaller
     {
         if (file_exists($this->install_lock)) 
         {
-            $content = file_get_contents($this->install_lock);
-            if ($content === $this->domain()) 
-            {
-                throw new Exception('Tên miền này đã được cài đặt trước đó, để cài đặt lại bạn có thể xoá tệp install.lock & config.ini!');
+            $lines = file($this->install_lock, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            if ($lines !== false) {
+                $cur = strtolower($this->domain());
+                $curHost = (strpos($cur, ':') !== false) ? explode(':', $cur, 2)[0] : $cur;
+                foreach ($lines as $line) {
+                    $l = strtolower(trim($line));
+                    $lHost = (strpos($l, ':') !== false) ? explode(':', $l, 2)[0] : $l;
+                    if ($cur === $l || $curHost === $lHost) {
+                        throw new Exception('Tên miền này đã được cài đặt trước đó, để cài đặt lại bạn có thể xoá tệp install.lock & config.ini!');
+                    }
+                }
             }
         }
     }

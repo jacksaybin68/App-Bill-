@@ -1,18 +1,24 @@
 <?php
 namespace Database;
+
+use DomainManager;
+
+if (empty($_SERVER['DOCUMENT_ROOT'])) {
+    $_SERVER['DOCUMENT_ROOT'] = realpath(__DIR__ . '/../..') ?: dirname(__DIR__, 2);
+}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/server/services/DomainManager.php';
+
 class Installer
 {
     private $lock = '/install.lock';
     private $config = '/config.ini';
     private $robots = '/robots.txt';
-    // private $db = '/function/connect/config.ini.php';
 
     public function __construct()
     {
         $this->lock = $_SERVER['DOCUMENT_ROOT'].$this->lock;
         $this->config = $_SERVER['DOCUMENT_ROOT'].$this->config;
         $this->robots = $_SERVER['DOCUMENT_ROOT'].$this->robots;
-        // $this->db = $_SERVER['DOCUMENT_ROOT'].$this->db;
     }
 
     /**
@@ -22,8 +28,7 @@ class Installer
      */
     private function domain()
     {
-        $cd = $_SERVER['HTTP_HOST'];
-        return strtolower($cd);
+        return DomainManager::getCurrentHost();
     }
 
     /**
@@ -33,15 +38,6 @@ class Installer
      */
     private function server()
     {
-        // if (version_compare(phpversion(), '8.0', '<'))
-        // {
-        //     return false;
-        // }
-
-        // if (!function_exists('mysqli_connect'))
-        // {
-        //     return false;
-        // }
         return (version_compare(PHP_VERSION, '8.0.0', '>=') && function_exists('mysqli_connect'));
     }
 
@@ -52,15 +48,24 @@ class Installer
      */
     private function installed()
     {
-        if (file_exists($this->lock)) 
-        {
-            $content = file_get_contents($this->lock);
-            if ($this->similar($content, $this->domain())) 
-            {
+        if (!file_exists($this->lock)) {
+            return false;
+        }
+
+        $lines = file($this->lock, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if ($lines === false || empty($lines)) {
+            return false;
+        }
+
+        $current = $this->domain();
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (!empty($line) && $this->similar($current, $line)) {
                 return true;
             }
         }
-        return false;
+
+        return DomainManager::isAllowedDomain($current);
     }
 
     /**
@@ -70,36 +75,29 @@ class Installer
      */
     public function check()
     {
-    if ($this->installed()) {
-        if (!file_exists($this->config)) {
-            $this->create($this->domain());
-        } else {
-            $this->robots();
-        }
-        return true;
-    }
-    $domains = [];
-    if (file_exists($this->lock)) {
-        $domains = array_map('trim', file($this->lock));
-    }
-
-    $current_domain = $this->domain();
-    foreach ($domains as $domain) {
-        if ($this->similar($domain, $current_domain)) {
-            file_put_contents($this->lock, implode(PHP_EOL, $domains));
+        if ($this->installed()) {
+            if (!file_exists($this->config)) {
+                $this->create($this->domain());
+            } else {
+                $this->robots();
+            }
             return true;
         }
-    }
-    $domains[] = $current_domain;
-    file_put_contents($this->lock, implode(PHP_EOL, $domains));
-    if (!file_exists($this->config)) {
-        $this->create($current_domain);
-    } else {
-        $this->robots();
+
+        $current_domain = $this->domain();
+        if (DomainManager::isAllowedDomain($current_domain)) {
+            DomainManager::addDomainToLock($current_domain);
+            if (!file_exists($this->config)) {
+                $this->create($current_domain);
+            } else {
+                $this->robots();
+            }
+            return true;
+        }
+
+        return false;
     }
 
-    return true;
-    }
     /**
      * Method to check if current domain matches locked domain or is a subdomain
      *
@@ -109,47 +107,62 @@ class Installer
      */
     private function similar($current_domain, $locked_domain)
     {
-        return strpos($current_domain, $locked_domain) !== false || strpos($locked_domain, $current_domain) !== false;
+        $current_domain = strtolower(trim($current_domain));
+        $locked_domain = strtolower(trim($locked_domain));
+
+        if ($current_domain === $locked_domain) {
+            return true;
+        }
+
+        // Tách port nếu có để so sánh host
+        $cHost = (strpos($current_domain, ':') !== false) ? explode(':', $current_domain, 2)[0] : $current_domain;
+        $lHost = (strpos($locked_domain, ':') !== false) ? explode(':', $locked_domain, 2)[0] : $locked_domain;
+
+        if ($cHost === $lHost) {
+            return true;
+        }
+
+        if (str_ends_with($cHost, '.' . $lHost)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
-     * Create config file with current domain
+     * Create config file with current domain and allowed domains list
      *
      * @param string $domain
      * @return void
      */
     private function create($domain)
     {
-        $data = "[config]\ndomain = ".$domain;
+        $allowed = implode(', ', DomainManager::getAllowedDomains());
+        $data = "[config]\ndomain = " . $domain . "\ndomains = " . $allowed . "\n";
         file_put_contents($this->config, $data);
     }
 
     /**
-     * Make file config & update install
+     * Make file config & update install without wiping out multi-domain list
      *
      * @return void
      */
     public function config()
     {
-        file_put_contents($this->lock, $this->domain());
-        if (!file_exists($this->config)) 
-        {
+        DomainManager::addDomainToLock($this->domain());
+
+        if (!file_exists($this->config)) {
             $this->create($this->domain());
-        } else 
-        {
-            $content = file_get_contents($this->config);
-            if (strpos($content, $this->domain()) === false) 
-            {
-                $data = "\ndomain = ".$this->domain();
-                file_put_contents($this->config, $data);
-            }
+        } else {
+            $this->robots();
         }
     }
+
     /**
      * Check if robots.txt exists, and if not, create it with default content
-    *
-    * @return void
-    */
+     *
+     * @return void
+     */
     public function robots()
     {
         if (!file_exists($this->robots)) 
@@ -179,17 +192,13 @@ class Installer
      */
     public function redirect($redirect)
     {
-
-        if (strpos($_SERVER['REQUEST_URI'], 'install') === false) 
+        $uri = $_SERVER['REQUEST_URI'] ?? '';
+        if (strpos($uri, 'install') === false) 
         {
-
             if (!$this->check()) 
             {
                 header('Location: '.$redirect);
                 exit;
-            } else 
-            {
-                $this->config();
             }
         } else 
         {
