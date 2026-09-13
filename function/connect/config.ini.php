@@ -19,10 +19,10 @@ if (file_exists($envFile)) {
 
 // Get configuration from environment variables
 $config = [
-    'server' => getenv('DB_SERVER') ?: 'localhost',
-    'username' => getenv('DB_USERNAME') ?: 'billviet',
-    'password' => getenv('DB_PASSWORD') ?: '',
-    'database' => getenv('DB_DATABASE') ?: 'billviet',
+    'server'   => getenv('DB_SERVER')   ?: ($_ENV['DB_SERVER']   ?? 'localhost'),
+    'username' => getenv('DB_USERNAME') ?: ($_ENV['DB_USERNAME'] ?? 'billviet'),
+    'password' => getenv('DB_PASSWORD') ?: ($_ENV['DB_PASSWORD'] ?? 'BillViet@2026'),
+    'database' => getenv('DB_DATABASE') ?: ($_ENV['DB_DATABASE'] ?? 'billviet'),
 ];
 
 // Warning if password is not set
