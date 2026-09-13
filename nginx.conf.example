@@ -74,7 +74,7 @@ server {
 
     # Menu chính & Nạp tiền
     location = /thong-tin-thanh-toan {
-        rewrite ^ /client/layout/pages/global/menu/tttt.php last;
+        rewrite ^ /client/layout/pages/global/menu/nap-tien.php last;
     }
     location ~ ^/nap-tien/([^/]+)/(send|transfer)$ {
         rewrite ^ /client/layout/pages/global/menu/nap-tien.php last;
@@ -108,6 +108,15 @@ server {
     location ~ ^/fake-bill/(.*)$ {
         rewrite ^/fake-bill/(.*)$ /client/layout/pages/global/sub-page/bill/$1.php last;
     }
+    location ~ ^/fake-bill-chuyen-khoan/(.*)$ {
+        rewrite ^/fake-bill-chuyen-khoan/(.*)$ /client/layout/pages/global/sub-page/bill/$1.php last;
+    }
+    location ~ ^/fake-so-du/(.*)$ {
+        rewrite ^/fake-so-du/(.*)$ /client/layout/pages/global/sub-page/so-du/$1.php last;
+    }
+    location ~ ^/fake-bdsd/(.*)$ {
+        rewrite ^/fake-bdsd/(.*)$ /client/layout/pages/global/sub-page/bdsd/$1.php last;
+    }
     location ~ ^/fake-bill/man-hinh-khoa/(.*)$ {
         rewrite ^/fake-bill/man-hinh-khoa/(.*)$ /client/layout/pages/global/sub-page/man-hinh-khoa/$1.php last;
     }
@@ -138,6 +147,52 @@ server {
     }
     location = /lich-su/thue-bank {
         rewrite ^ /client/layout/pages/global/menu/lich-su-thue-bank.php last;
+    }
+
+    # Giấy tờ & QR (CCCD, vé, giấy phép)
+    location = /tao-qr/cccd {
+        rewrite ^ /client/layout/pages/global/sub-page/giay-to/qr-cccd.php last;
+    }
+    location = /fake-cccd {
+        rewrite ^ /client/layout/pages/global/sub-page/giay-to/cccd.php last;
+    }
+    location = /fake-velenmaybay {
+        rewrite ^ /client/layout/pages/global/sub-page/giay-to/velenmaybay.php last;
+    }
+    location = /fake-velenmaybay2 {
+        rewrite ^ /client/layout/pages/global/sub-page/giay-to/velenmaybay2.php last;
+    }
+    location = /fake-velenmaybay3 {
+        rewrite ^ /client/layout/pages/global/sub-page/giay-to/velenmaybay3.php last;
+    }
+    location = /fake-vedientu {
+        rewrite ^ /client/layout/pages/global/sub-page/giay-to/vedientu.php last;
+    }
+
+    # Tools
+    location = /tools/spam-sms {
+        rewrite ^ /client/layout/pages/global/sub-page/tools/spam-sms.php last;
+    }
+    location = /tools/spam-ngl-link {
+        rewrite ^ /client/layout/pages/global/sub-page/tools/spam-ngl.php last;
+    }
+
+    # Lỗi
+    location = /bad-error {
+        rewrite ^ /client/layout/pages/global/error/bad-error.php last;
+    }
+
+    # Tải tệp bảo vệ & Obfuscation
+    location ~ ^/download/([a-fA-F0-9]{32})/?$ {
+        rewrite ^/download/([a-fA-F0-9]{32})/?$ /function/insert/protect/verify.php?code=$1 last;
+    }
+    location ~ ^/obf-alom/download/(.*)$ {
+        rewrite ^/obf-alom/download/(.*)$ /function/obf-php/alom/download/$1 last;
+    }
+
+    # Profile thành viên
+    location ~ ^/user/([^/]+)/settings/?$ {
+        rewrite ^ /client/layout/pages/user/profile.php last;
     }
 
     # Admin Dashboard & Quản trị
@@ -223,6 +278,15 @@ server {
     }
     location = /call-back/api/spam-ngl {
         rewrite ^ /function/call-back/api/spam-ngl.php last;
+    }
+    location = /call-back/api/delete-subdomain {
+        rewrite ^ /function/call-back/api/delete-subdomain.php last;
+    }
+    location = /call-back/api/export-credit-adjustments {
+        rewrite ^ /function/call-back/api/export-credit-adjustments.php last;
+    }
+    location = /call-back/lavender {
+        rewrite ^ /function/insert/alert/vip.ini.php last;
     }
     location = /cron-jobs/global {
         rewrite ^ /function/cron/global.php last;
