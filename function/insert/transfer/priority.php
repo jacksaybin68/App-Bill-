@@ -43,7 +43,7 @@
     </div>
 </div>
 <!-- / Bill Chuyển Khoản / -->
-<div class="grid lg:grid-cols-5 md:grid-cols-1 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bill-priority')===false): ?>hidden<?php endif;?>"
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bill-priority')===false): ?>hidden<?php endif;?>"
     id="bill-chuyen-khoan">
     <div class="col-bank">
         <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
@@ -216,7 +216,7 @@
 </div>
 </div>
 <!-- / Bill Số Dư / -->
-<div class="grid lg:grid-cols-5 md:grid-cols-1 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-so-du')===false): ?>hidden<?php endif;?>"
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-so-du')===false): ?>hidden<?php endif;?>"
     id="bill-so-du">
     <div class="col-bank">
         <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
@@ -243,7 +243,7 @@
         </div>
     </div>
 <!-- / Bill Biến Động / -->
-<div class="grid lg:grid-cols-5 md:grid-cols-1 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bdsd')===false): ?>hidden<?php endif;?>"
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bdsd')===false): ?>hidden<?php endif;?>"
     id="bill-bien-dong">
     <div class="nui-placeholder-page-content">
         <p class="nui-placeholder-page-subtitle <?=isMobile() ? '' : 'text-nowrap'?> text-red-500">Hiện chưa tìm thấy

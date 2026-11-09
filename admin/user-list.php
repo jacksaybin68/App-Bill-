@@ -398,7 +398,7 @@
                 <div class="alert alert-primary alert-icon"><em class="icon ni ni-alert-circle"></em> <strong>Lưu
                         Ý:</strong> Những dòng có đánh dấu (<b class="fw-bold text-danger">*</b>) là bắt buộc phải nhập,
                     tên tài khoản chỉ là duy nhất, và không thể sửa đổi sau này<br /><br />
-                    Phần quyền hạn, đối tác sẽ không có đủ quyền can thiệp vào các phần quan trọng của trang admin, ví
+                    Phần quyền hạn, đối tượng sẽ không có đủ quyền can thiệp vào các phần quan trọng của trang admin, ví
                     dụ cài đặt, sửa thành viên v.v.v</div>
                 <h5 class="modal-title"><span class="text-success"><em class="icon ni ni-user-add"></em></span>&ensp;Tạo
                     Thành Viên Mới</h5>

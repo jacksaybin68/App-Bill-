@@ -320,9 +320,11 @@ class SecurityLavender extends DatabaseConnection
      */
     public function encrypt(string $data): string
     {
-        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($this->method)); // @ rand iv
-        $encrypted = openssl_encrypt($data, $this->method, $this->key, 0, $iv);
-        return bin2hex($iv . $encrypted); // @ hex enc
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($this->method));
+        $encrypted = openssl_encrypt($data, $this->method, $this->key, OPENSSL_RAW_DATA, $iv);
+        if ($encrypted === false) return bin2hex($iv);
+        $hmac = hash_hmac('sha256', $iv . $encrypted, $this->key, true);
+        return bin2hex($iv . $hmac . $encrypted);
     }
 
     /**
@@ -334,20 +336,29 @@ class SecurityLavender extends DatabaseConnection
     public function decrypt(string $data): ?string
     {
         if (strlen($data) % 2 !== 0) {
-            $data = '0' . $data; // @ add hex
+            return null;
         }
-        $data = hex2bin($data); // @ dec hex
+        $raw = hex2bin($data);
+        if ($raw === false) return null;
         $iv_length = openssl_cipher_iv_length($this->method);
-
-        $iv = substr($data, 0, $iv_length);
-        $encrypted = substr($data, $iv_length);
-
-        if (strlen($iv) < $iv_length) {
-            $iv = str_pad($iv, $iv_length, "\0");
+        // New format: iv (16) + hmac (32) + ciphertext (raw)
+        if (strlen($raw) >= $iv_length + 32) {
+            $iv = substr($raw, 0, $iv_length);
+            $hmac = substr($raw, $iv_length, 32);
+            $encrypted = substr($raw, $iv_length + 32);
+            $calcHmac = hash_hmac('sha256', $iv . $encrypted, $this->key, true);
+            if (hash_equals($hmac, $calcHmac)) {
+                $decrypted = openssl_decrypt($encrypted, $this->method, $this->key, OPENSSL_RAW_DATA, $iv);
+                return $decrypted === false ? null : $decrypted;
+            }
+            // Fallback to legacy format if HMAC mismatch (migration window)
         }
-
-        $decrypted = openssl_decrypt($encrypted, $this->method, $this->key, 0, $iv);
-        return $decrypted === false ? null : $decrypted; // @ indecipherable
+        // Legacy format: iv (16) + base64 ciphertext
+        if (strlen($raw) < $iv_length) return null;
+        $iv = substr($raw, 0, $iv_length);
+        $encrypted_b64 = substr($raw, $iv_length);
+        $decrypted = openssl_decrypt($encrypted_b64, $this->method, $this->key, 0, $iv);
+        return $decrypted === false ? null : $decrypted;
     }
 
     /**
@@ -362,7 +373,7 @@ class SecurityLavender extends DatabaseConnection
             return null; // @ no public key
         }
     
-        openssl_public_encrypt($data, $encrypted, $this->publicKey);
+        openssl_public_encrypt($data, $encrypted, $this->publicKey, OPENSSL_PKCS1_OAEP_PADDING);
         return $encrypted ? base64_encode($encrypted) : null;
     }
     /**
@@ -381,7 +392,7 @@ class SecurityLavender extends DatabaseConnection
             return null;
         }
         $decrypted = null;
-        $result = openssl_private_decrypt(base64_decode($data), $decrypted, $privateKeys);
+        $result = openssl_private_decrypt(base64_decode($data), $decrypted, $privateKeys, OPENSSL_PKCS1_OAEP_PADDING);
         if (!$result) {
             return null;
         }
@@ -540,7 +551,7 @@ class CheckSSK
      */
     private function kill_session()
     {
-        setcookie("ssk", "", time() - rand(1000, 9999), "/", "", true, true);
+        setcookie("ssk", "", ["expires" => time() - 3600, "path" => "/", "domain" => "", "secure" => true, "httponly" => true, "samesite" => "Strict"]);
     }
 }
 // $prefix ??= "";
@@ -704,7 +715,7 @@ class SessionExpiredChecker
     private function logout()
     {
         $taikhoan = null;
-        setcookie("ssk", "", time() - 3600, "/");
+        setcookie("ssk", "", ["expires" => time() - 3600, "path" => "/", "domain" => "", "secure" => true, "httponly" => true, "samesite" => "Strict"]);
     }
 
     /**
@@ -900,24 +911,25 @@ function BACKUP_DATABASE($thanhdieudb)
  */
 function decryptPostData(array $postData, $securityInstance, array $excludeKeys = []): array
 {
+    $encryptedKeys = ['_auth', 'thanhdieu-protected'];
     $data = [];
-    foreach ($postData as $key => $value) 
+    foreach ($postData as $key => $value)
     {
-        if (in_array($key, $excludeKeys)) 
+        if (in_array($key, $excludeKeys, true))
         {
             $data[$key] = $value;
             continue;
         }
-
-        if (strpos($value, '=') !== false) 
+        if (in_array($key, $encryptedKeys, true) && is_string($value) && strpos($value, '=') !== false)
         {
-            $data[$key] = $securityInstance->decryptRSA($value);
-            if ($data[$key] === null) 
+            $decrypted = $securityInstance->decryptRSA($value);
+            if ($decrypted === null)
             {
                 exit(JSON_FORMATTER(['status' => -1, 'msg' => "Request data is not authorized."]));
             }
-        } 
-        else 
+            $data[$key] = $decrypted;
+        }
+        else
         {
             $data[$key] = $value;
         }
@@ -3416,8 +3428,6 @@ class Bill extends DatabaseConnection
         "Sodu-Zalopay" => "https://thanhdieu.com/bill/sodu-zalopay.png",
         "Sodu-Acb" => "https://thanhdieu.com/bill/sodu-acb.png",
         "Sodu-MbBank" => "https://thanhdieu.com/bill/sodu-mb.png",
-        "Sodu-Mbnoel" => "/public/src/vtd/img/phoi/bill/sodu-mbnoel.jpg",
-        "Bill-MbBank-Junior" => "/public/src/vtd/img/phoi/bill/mb-junior.png",
         "BDSD-MbBank" => "https://thanhdieu.com/bill/bdsd-mb.png",
         "BDSD-Techcombank" => "https://thanhdieu.com/bill/bdsd-tcb.png",
         "CCCD-MatTruoc" => "https://i.imgur.com/mHtMvOP.jpeg",

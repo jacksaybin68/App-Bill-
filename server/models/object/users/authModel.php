@@ -95,9 +95,10 @@ class UserAuth extends DatabaseConnection
         if ($TD->Setting('is-captcha') && $postCaptcha['status'] !== 'success') {
             return $this->Res(-1, Geetest::Error($postCaptcha['reason'] ?? null) ?? 'Xác thực captcha không thành công, vui lòng xác minh lại!');
         }
-        if (array_filter([$email, $username, $password, $repeat_password]) !== [$email, $username, $password, $repeat_password]) 
-        {
-            return $this->Res(-1, 'Vui lòng không bỏ trống mục nào!');
+        foreach ([$email, $username, $password, $repeat_password] as $field) {
+            if ($field === null || trim((string)$field) === '') {
+                return $this->Res(-1, 'Vui lòng không bỏ trống mục nào!');
+            }
         }
         if (!valid_email($email)) 
         {
@@ -189,16 +190,24 @@ class UserAuth extends DatabaseConnection
                 {
                     return ['status' => -1, 'msg' => 'Tài khoản của bạn đã bị đình chỉ, do không tuân thủ điều khoản của nền tảng!'];
                 } else {
-                    self::ThanhDieuDB()->query("UPDATE users SET ip='$ip' WHERE username='{$user['username']}'");
-                    setcookie(
-                        'ssk', 
-                        $wtSecurity->encrypt($user['username']), 
-                        time() + ($remember==='on' ? 365 * 24 * 60 * 60 : 1 * 24 * 60 * 60),
-                        "/", 
-                        "", 
-                        false, // secure = false for local HTTP dev
-                        true
-                    );
+                    $updateIp = self::ThanhDieuDB()->prepare("UPDATE users SET ip=? WHERE username=?");
+                    $updateIp->bind_param("ss", $ip, $user['username']);
+                    $updateIp->execute();
+                    // Rehash password if cost is outdated (auto-upgrade from cost 7 -> 12)
+                    if (password_needs_rehash($user['password'], PASSWORD_BCRYPT, ['cost' => 12])) {
+                        $newHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+                        $rehashStmt = self::ThanhDieuDB()->prepare("UPDATE users SET password=? WHERE username=?");
+                        $rehashStmt->bind_param("ss", $newHash, $user['username']);
+                        $rehashStmt->execute();
+                    }
+                    setcookie('ssk', $wtSecurity->encrypt($user['username']), [
+                        'expires' => time() + ($remember==='on' ? 365 * 24 * 60 * 60 : 1 * 24 * 60 * 60),
+                        'path' => '/',
+                        'domain' => '',
+                        'secure' => true,
+                        'httponly' => true,
+                        'samesite' => 'Strict'
+                    ]);
                     // self::ThanhDieuDB()->query("INSERT INTO ws_logs (username, content, action) VALUES ('{$user['username']}', 
                     // 'vừa thực hiện đăng nhập trên thiết bị: ".
                     // (isset($_COOKIE['_window']) && $_COOKIE['_window'] == 11 ? 'Window 11' : $device_info->name.' trên trình duyệt '.$browser_info->name)."', 'Đăng Nhập Hệ Thống')");
@@ -253,7 +262,7 @@ class UserAuth extends DatabaseConnection
         {
             return ['status' => -1, 'msg' => 'Mật khẩu mới không được giống mật khẩu cũ.'];
         }
-        $new_hashed_pw = password_hash($password_new, PASSWORD_BCRYPT, ['cost' => 7]);
+        $new_hashed_pw = password_hash($password_new, PASSWORD_BCRYPT, ['cost' => 12]);
         $WsMailler->NotifyChangePw(
             $user['email'],
             $formatter_time,
@@ -276,8 +285,14 @@ class UserAuth extends DatabaseConnection
      */
     public function logout()
     {
-        usleep(random_int(700000, 1000000));
-        setcookie('ssk', '', time() - WsRandomString::Number(10), "/", "", true, true); // destroy ssk (session key)
+        setcookie('ssk', '', [
+            'expires' => time() - 3600,
+            'path' => '/',
+            'domain' => '',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
         return ['status' => 200, 'msg' => 'Đăng xuất thành công!'];
     }    
     /**
@@ -383,12 +398,19 @@ class UserAuth extends DatabaseConnection
     {
         $access_key = WsRandomString::Key();
         $avatar = RandomHexColor();
-        $hashed_pw = password_hash($password, PASSWORD_BCRYPT, ['cost' => 7]);
+        $hashed_pw = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
         $vtd = self::ThanhDieuDB()->prepare("INSERT INTO users (email, username, password, ip, access_key, avatar) VALUES (?, ?, ?, ?, ?, ?)");
         $vtd->bind_param('ssssss', $email, $username, $hashed_pw, $ip, $access_key, $avatar);
         $logs =  $vtd->execute();
         if ($logs) {
-            setcookie('ssk', $wtSecurity->encrypt($username), time() + (360 * 24 * 60 * 60), "/", "", false, true); // secure=false for local HTTP dev
+            setcookie('ssk', $wtSecurity->encrypt($username), [
+                'expires' => time() + (360 * 24 * 60 * 60),
+                'path' => '/',
+                'domain' => '',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]);
             $vtd_log = self::ThanhDieuDB()->prepare("INSERT INTO ws_logs (username, content, action) VALUES (?, ?, ?)");
             $content = "\xc4\x91\xc4\x83\x6e\x67\x20\x6b\xc3\xbd\x20\x74\xc3\xa0\x69\x20\x6b\x68\x6f\xe1\xba\xa3\x6e\x20\x6d\xe1\xbb\x9b\x69";
             $action = "\xc4\x90\xc4\x83\x6e\x67\x20\x4b\xc3\xbd\x20\x54\xc3\xa0\x69\x20\x4b\x68\x6f\xe1\xba\xa3\x6e";

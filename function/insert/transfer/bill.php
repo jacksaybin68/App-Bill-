@@ -45,7 +45,7 @@
 <!-- / Bill Chuyển Khoản / -->
 
 
-<div class="grid lg:grid-cols-5 md:grid-cols-1 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bill-chuyen-khoan')===false): ?>hidden<?php endif;?>"
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bill-chuyen-khoan')===false): ?>hidden<?php endif;?>"
     id="bill-chuyen-khoan">
     <div class="col-bank">
         <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
@@ -113,6 +113,9 @@
                         </p> -->
                     </div>
                 </div>
+            </a>
+        </div>
+    </div>
     <div class="col-bank">
         <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
             <a href="javascript:;" data-target-href="/fake-bill/mb-bank-noel">
@@ -1024,7 +1027,7 @@
 </div>
 </div>
 <!-- / Bill Số Dư / -->
-<div class="grid lg:grid-cols-5 md:grid-cols-1 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-so-du')===false): ?>hidden<?php endif;?>"
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-so-du')===false): ?>hidden<?php endif;?>"
     id="bill-so-du">
     <div class="col-bank">
         <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
@@ -1297,7 +1300,7 @@
     </div>
 </div>
 <!-- / Bill Biến Động / -->
-<div class="grid lg:grid-cols-5 md:grid-cols-1 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bdsd')===false): ?>hidden<?php endif;?>"
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 select-none mb-6 <?php if (strpos($current_url, 'fake-bdsd')===false): ?>hidden<?php endif;?>"
     id="bill-bien-dong">
     <div class="col-bank">
         <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
@@ -1341,6 +1344,46 @@
                         <!-- <p class="nui-paragraph nui-paragraph-xs nui-weight-normal nui-lead-normal p-1">
                             <span class="text-muted-400">Ngân hàng Kỹ Thương</span>
                         </p> -->
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-bank">
+        <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+            <a href="javascript:;" data-target-href="/fake-bdsd/mb-bank-priority">
+                <div class="flex flex-col">
+                    <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                        <div class="nui-avatar-inner">
+                            <img src="/<?=__IMG__?>/icon/bank/mbbank2.png" alt="Logo MB Bank Priority" class="nui-avatar-img">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4
+                            class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                            <span>MB Bank Priority</span>
+                        </h4>
+                        <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'MB Bank Priority','type' => 'Biến Động']);?> bill</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-bank">
+        <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+            <a href="javascript:;" data-target-href="/fake-bdsd/acb-privilege">
+                <div class="flex flex-col">
+                    <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                        <div class="nui-avatar-inner">
+                            <img src="/<?=__IMG__?>/icon/bank/acb.png" alt="Logo ACB Privilege" class="nui-avatar-img">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4
+                            class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                            <span>ACB Privilege</span>
+                        </h4>
+                        <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'ACB Privilege','type' => 'Biến Động']);?> bill</p>
                     </div>
                 </div>
             </a>

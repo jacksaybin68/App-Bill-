@@ -57,11 +57,11 @@
                                 <tbody>
                                     <?php while ($user = mysqli_fetch_assoc($oOo)) { ?>
                                     <tr>
-                                        <th scope="row"><?=$user['id']?></th>
+                                        <th scope="row"><?=$user['user_id']?></th>
                                         <td class="fw-bold text-nowrap"><?=THANHDIEU($user['username'])?></td>
                                         <td><?=THANHDIEU($user['email'] ?? '')?></td>
                                         <td class="text-nowrap"><?=FormatNumber::TD($user['sodu'])?>đ</td>
-                                        <td><span class="badge rounded-pill bg-light"><?=$user['role']?></span></td>
+                                        <td><span class="badge rounded-pill bg-light"><?=$user['rank'] ?? $user['role'] ?? 'members'?></span></td>
                                         <td><span class="badge rounded-pill bg-danger">Bị Cấm</span></td>
                                     </tr>
                                     <?php }?>

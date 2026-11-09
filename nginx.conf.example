@@ -250,6 +250,10 @@ server {
     location = /admin/cron-jobs {
         rewrite ^ /admin/cron-jobs.php last;
     }
+
+    location = /admin/chat {
+        rewrite ^ /admin/chat.php last;
+    }
     location ~ ^/admin/settings(/.*)?$ {
         rewrite ^ /admin/settings.php last;
     }

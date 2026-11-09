@@ -2,7 +2,9 @@
     <div class="nk-sidebar-inner" data-simplebar>
         <ul class="nk-menu nk-menu-md">
             <li class="nk-menu-heading">
-                <h6 class="overline-title text-primary-alt">Dashboard</h6>
+                <h6 class="overline-title text-primary-alt">
+                    <em class="icon ni ni-home"></em> Dashboard
+                </h6>
             </li>
             <li class="nk-menu-item home">
                 <a href="<?=$admin->Path()?>/dashboard" class="nk-menu-link">
@@ -12,58 +14,14 @@
                     <span class="nk-menu-text">Trang Chủ</span>
                 </a>
             </li>
-            <!--<li class="nk-menu-item has-sub newfeeds">
-                <a href="#" class="nk-menu-link nk-menu-toggle">
-                    <span class="nk-menu-icon">
-                        <em class="icon ni ni-property-add"></em>
-                    </span>
-                    <span class="nk-menu-text">Quản Lý Bảng Tin</span>
-                </a>
-                <ul class="nk-menu-sub td-newfeeds">
-                    <li class="nk-menu-item">
-                        <a href="<?=$admin->Path()?>/create/newfeeds" class="nk-menu-link">
-                            <span class="nk-menu-text"><em class="icon ni ni-plus-circle"></em> Đăng Bảng Tin Mới</span>
-                        </a>
-                    </li>
-                    <li class="nk-menu-item">
-                        <a href="<?=$admin->Path()?>/newfeeds/list" class="nk-menu-link">
-                            <span class="nk-menu-text"><em class="icon ni ni-list-thumb"></em> Danh Sách Bảng Tin</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nk-menu-item has-sub product-page">
-                <a href="#" class="nk-menu-link nk-menu-toggle">
-                    <span class="nk-menu-icon">
-                    <em class="icon ni ni-code"></em>
-                    </span>
-                    <span class="nk-menu-text">Quản Lý Đơn Hàng</span>
-                </a>
-                <ul class="nk-menu-sub td-product-page">
-                    <li class="nk-menu-item">
-                        <a href="<?=$admin->Path()?>/create/product" class="nk-menu-link">
-                            <span class="nk-menu-text"><em class="icon ni ni-plus-circle"></em> Đăng Bán Đơn Hàng</span>
-                        </a>
-                    </li>
-                    <li class="nk-menu-item">
-                        <a href="<?=$admin->Path()?>/product/list" class="nk-menu-link">
-                            <span class="nk-menu-text"><em class="icon ni ni-list-thumb"></em> Danh Sách Đơn Hàng</span>
-                        </a>
-                    </li>
-                    <!-- <li class="nk-menu-item">
-                        <a href="<?=$admin->Path()?>/history/product" class="nk-menu-link">
-                            <span class="nk-menu-text"><em class="icon ni ni-list-thumb"></em> Đơn Hàng Đã Bán</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>-->
-            <li class="nk-menu-item">
-                <a href="<?=$admin->Path()?>/activity/log" class="nk-menu-link">
-                    <span class="nk-menu-icon">
-                    <em class="icon ni ni-activity-round-fill"></em>
-                    </span>
-                    <span class="nk-menu-text">Nhật Ký Hoạt Động</span>
-                </a>
+
+            <li class="nk-menu-hr"></li>
+
+            <!-- === Nhóm QUẢN LÝ NGƯỜI DÙNG === -->
+            <li class="nk-menu-heading">
+                <h6 class="overline-title text-info-alt">
+                    <em class="icon ni ni-account-setting-alt"></em> Người Dùng
+                </h6>
             </li>
             <li class="nk-menu-item has-sub users">
                 <a href="<?=$admin->Path()?>/users/list" class="nk-menu-link nk-menu-toggle">
@@ -75,22 +33,29 @@
                 <ul class="nk-menu-sub td-users">
                     <li class="nk-menu-item">
                         <a href="<?=$admin->Path()?>/users/list" class="nk-menu-link">
-                            <span class="nk-menu-text"><em class="icon ni ni-list-thumb"></em>
-                                Danh Sách Thành Viên</span>
+                            <span class="nk-menu-text"><em class="icon ni ni-list-thumb"></em> Danh Sách Thành Viên</span>
                         </a>
                     </li>
-                    <!-- <li class="nk-menu-item">
+                    <li class="nk-menu-item">
                         <a href="<?=$admin->Path()?>/users/banned" class="nk-menu-link">
-                            <span class="nk-menu-text"><em class="icon ni ni-na"></em>
-                            Thành Viên Bị Cấm</span>
+                            <span class="nk-menu-text"><em class="icon ni ni-lock-circle"></em> Thành Viên Bị Cấm</span>
                         </a>
-                    </li> -->
+                    </li>
                 </ul>
+            </li>
+
+            <li class="nk-menu-hr"></li>
+
+            <!-- === Nhóm QUẢN LÝ TÀI KHOẢN & GÓI === -->
+            <li class="nk-menu-heading">
+                <h6 class="overline-title text-warning-alt">
+                    <i class="ri-vip-crown-2-line"></i> Tài Khoản & Gói
+                </h6>
             </li>
             <li class="nk-menu-item has-sub bank">
                 <a href="#" class="nk-menu-link nk-menu-toggle">
                     <span class="nk-menu-icon">
-                    <i class="ri-bank-line fs-16px"></i>
+                        <i class="ri-bank-line fs-16px"></i>
                     </span>
                     <span class="nk-menu-text">Quản Lý Nạp Tiền</span>
                 </a>
@@ -112,10 +77,11 @@
                     </li>
                 </ul>
             </li>
+
             <li class="nk-menu-item has-sub">
                 <a href="#" class="nk-menu-link nk-menu-toggle">
                     <span class="nk-menu-icon">
-                    <i class="ri-vip-crown-2-line fs-16px"></i>
+                        <i class="ri-vip-crown-2-line fs-16px"></i>
                     </span>
                     <span class="nk-menu-text">Quản Lý Gói VIP</span>
                 </a>
@@ -123,7 +89,7 @@
                     <li class="nk-menu-item">
                         <a href="<?=$admin->Path()?>/manager/plan" class="nk-menu-link">
                             <span class="nk-menu-text"><i class="ri-add-circle-line"></i> Tạo/Sửa Gói</span>
-                        </a>    
+                        </a>
                     </li>
                     <li class="nk-menu-item">
                         <a href="<?=$admin->Path()?>/history/plan" class="nk-menu-link">
@@ -132,22 +98,81 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nk-menu-hr"></li>
+
+            <!-- === Nhóm BÀN TIN & HOẠT ĐỘNG === -->
+            <li class="nk-menu-heading">
+                <h6 class="overline-title text-success-alt">
+                    <em class="icon ni ni-bulletin-board"></em> Nội Dung
+                </h6>
+            </li>
+            <li class="nk-menu-item has-sub newfeeds">
+                <a href="#" class="nk-menu-link nk-menu-toggle">
+                    <span class="nk-menu-icon">
+                        <em class="icon ni ni-bulletin-board"></em>
+                    </span>
+                    <span class="nk-menu-text">Quản Lý Bảng Tin</span>
+                </a>
+                <ul class="nk-menu-sub td-newfeeds">
+                    <li class="nk-menu-item">
+                        <a href="<?=$admin->Path()?>/create/newfeeds" class="nk-menu-link">
+                            <span class="nk-menu-text"><em class="icon ni ni-plus-circle"></em> Đăng Bảng Tin Mới</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="<?=$admin->Path()?>/newfeeds/list" class="nk-menu-link">
+                            <span class="nk-menu-text"><em class="icon ni ni-list-thumb"></em> Danh Sách Bảng Tin</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nk-menu-item">
+                <a href="<?=$admin->Path()?>/activity/log" class="nk-menu-link">
+                    <span class="nk-menu-icon">
+                        <em class="icon ni ni-activity-round-fill"></em>
+                    </span>
+                    <span class="nk-menu-text">Nhật Ký Hoạt Động</span>
+                </a>
+            </li>
+
             <li class="nk-menu-item">
                 <a href="<?=$admin->Path()?>/history/bill" class="nk-menu-link">
-                    <span class="nk-menu-icon mt2">
-                    <i class="ri-bill-line fs-17px"></i>
+                    <span class="nk-menu-icon">
+                        <i class="ri-bill-line fs-16px"></i>
                     </span>
                     <span class="nk-menu-text">Lịch Sử Tạo Bill</span>
                 </a>
             </li>
-            <!-- <li class="nk-menu-item">
+
+            <!-- === Chat Admin - User (MỚI) === -->
+            <li class="nk-menu-item">
+                <a href="<?=$admin->Path()?>/chat" class="nk-menu-link">
+                    <span class="nk-menu-icon">
+                        <em class="icon ni ni-message-2"></em>
+                    </span>
+                    <span class="nk-menu-text">Chat Admin - User</span>
+                </a>
+            </li>
+
+            <li class="nk-menu-item">
                 <a href="<?=$admin->Path()?>/cron-jobs" class="nk-menu-link">
-                    <span class="nk-menu-icon mt2">
-                    <i class="ri-terminal-box-line fs-17px"></i>
+                    <span class="nk-menu-icon">
+                        <i class="ri-terminal-box-line fs-16px"></i>
                     </span>
                     <span class="nk-menu-text">Tác Vụ Cron-Job</span>
                 </a>
-            </li> -->
+            </li>
+
+            <li class="nk-menu-hr"></li>
+
+            <!-- === Nhóm HỆ THỐNG === -->
+            <li class="nk-menu-heading">
+                <h6 class="overline-title text-danger-alt">
+                    <em class="icon ni ni-setting"></em> Hệ Thống
+                </h6>
+            </li>
             <li class="nk-menu-item">
                 <a href="<?=$admin->Path()?>/settings/" class="nk-menu-link">
                     <span class="nk-menu-icon">
@@ -156,14 +181,14 @@
                     <span class="nk-menu-text">Cài Đặt</span>
                 </a>
             </li>
-            <!--<li class="nk-menu-item">
+            <li class="nk-menu-item">
                 <a href="<?=$admin->Path()?>/tutorial-of-admin" class="nk-menu-link">
-                    <span class="nk-menu-icon mt2">
-                    <i class="ri-question-line fs-18px"></i>
+                    <span class="nk-menu-icon">
+                        <i class="ri-question-line fs-16px"></i>
                     </span>
                     <span class="nk-menu-text">Hướng Dẫn</span>
                 </a>
-            </li>-->
+            </li>
         </ul>
     </div>
 </div>

@@ -18,6 +18,7 @@
 <?php endif; ?>
 <script src="/<?=__JS__?>/wt-upload.min.js?v=<?=$TD->Setting('cache')?>.343"></script>
 <script src="/<?=__JS__?>/main.min.js?v=<?=rand(111111,2222222222);?>"></script>
+<script src="/<?=__JS__?>/thanh-dieu-auth-login.js?v=<?=rand(111111,2222222222);?>"></script>
 <!--
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

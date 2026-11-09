@@ -43,7 +43,9 @@ RewriteRule ^fake-bill/acb$ /client/layout/pages/global/sub-page/bill/acb.php [L
 RewriteRule ^fake-bill/momo$ /client/layout/pages/global/sub-page/bill/momo.php [L]
 RewriteRule ^fake-bill/zalopay$ /client/layout/pages/global/sub-page/bill/zalopay.php [L]
 RewriteRule ^fake-bill/tp-bank$ /client/layout/pages/global/sub-page/bill/tpbank.php [L]
+RewriteRule ^fake-bill/tpbank$ /client/layout/pages/global/sub-page/bill/tpbank.php [L]
 RewriteRule ^fake-bill/vp-bank$ /client/layout/pages/global/sub-page/bill/vpbank.php [L]
+RewriteRule ^fake-bill/vpbank$ /client/layout/pages/global/sub-page/bill/vpbank.php [L]
 RewriteRule ^fake-bill/msb$ /client/layout/pages/global/sub-page/bill/msb.php [L]
 RewriteRule ^fake-bill/agribank$ /client/layout/pages/global/sub-page/bill/agribank.php [L]
 RewriteRule ^fake-bill/bacabank$ /client/layout/pages/global/sub-page/bill/bacabank.php [L]
@@ -66,6 +68,14 @@ RewriteRule ^fake-bill/man-hinh-khoa/vib$ /client/layout/pages/global/sub-page/m
 RewriteRule ^fake-bill/man-hinh-khoa/msb$ /client/layout/pages/global/sub-page/man-hinh-khoa/msb.php [L]
 RewriteRule ^fake-bill/man-hinh-khoa/tpbank$ /client/layout/pages/global/sub-page/man-hinh-khoa/tpbank.php [L]
 RewriteRule ^fake-bill/man-hinh-khoa/agribank$ /client/layout/pages/global/sub-page/man-hinh-khoa/agribank.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/mb-bank-priority$ /client/layout/pages/global/sub-page/man-hinh-khoa/mb-bank-priority.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/acb-privilege$ /client/layout/pages/global/sub-page/man-hinh-khoa/acb-privilege.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/vietcombank-galaxy$ /client/layout/pages/global/sub-page/man-hinh-khoa/vietcombank-galaxy.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/bidv-premier$ /client/layout/pages/global/sub-page/man-hinh-khoa/bidv-premier.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/techcombank-new$ /client/layout/pages/global/sub-page/man-hinh-khoa/techcombank-new.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/tpbank-new$ /client/layout/pages/global/sub-page/man-hinh-khoa/tpbank-new.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/vpbank-neo$ /client/layout/pages/global/sub-page/man-hinh-khoa/vpbank-neo.php [L]
+RewriteRule ^fake-bill/man-hinh-khoa/seabank-premium$ /client/layout/pages/global/sub-page/man-hinh-khoa/seabank-premium.php [L]
 RewriteRule ^fake-bill-chuyen-khoan/mb-bank-priority$ /client/layout/pages/global/sub-page/bill/mb-bank-priority.php [L]
 RewriteRule ^fake-bill-chuyen-khoan/seabank-premium$ /client/layout/pages/global/sub-page/bill/seabank-premium.php [L]
 RewriteRule ^fake-bill-chuyen-khoan/acb-privilege$ /client/layout/pages/global/sub-page/bill/acb-privilege.php [L]
@@ -121,6 +131,8 @@ RewriteRule ^fake-so-du/vpbank$ /client/layout/pages/global/sub-page/so-du/vpban
 #==============================#
 RewriteRule ^fake-bdsd/mb-bank$ /client/layout/pages/global/sub-page/bdsd/mb-bank.php [L]
 RewriteRule ^fake-bdsd/techcombank$ /client/layout/pages/global/sub-page/bdsd/techcombank.php [L]
+RewriteRule ^fake-bdsd/mb-bank-priority$ /client/layout/pages/global/sub-page/bdsd/mb-bank-priority.php [L]
+RewriteRule ^fake-bdsd/acb-privilege$ /client/layout/pages/global/sub-page/bdsd/acb-privilege.php [L]
 
 #==============================#
 # Assign Fake Other
@@ -172,6 +184,7 @@ RewriteRule ^admin/history/plan$ /admin/history-plan.php [L]
 RewriteRule ^admin/users/edit/([0-9a-zA-Z]+)$ /admin/edit-user.php [L]
 RewriteRule ^admin/history/bill$ /admin/bill.php [L]
 RewriteRule ^admin/cron-jobs$ /admin/cron-jobs.php [L]
+RewriteRule ^admin/chat$ /admin/chat.php [L]
 RewriteRule ^admin/settings(/.*)?$ /admin/settings.php [L]
 RewriteRule ^admin/tutorial-of-admin$ /admin/tutorial.php [L]
 #==============================#s

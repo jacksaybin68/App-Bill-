@@ -9,7 +9,7 @@
         </h3>
     </div>
 </div>
-<div class="grid lg:grid-cols-5 md:grid-cols-1 gap-6 mt-6 select-none mb-6">
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 select-none mb-6">
 <div class="col-bank">
     <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
         <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/mb-bank">
@@ -305,6 +305,159 @@
                         <span>Agribank</span>
                     </h4>
                     <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'Agribank','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/mb-bank-priority">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/mbbank2.png" alt="Logo MB Bank Priority" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>MB Bank Priority</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'MB Bank Priority','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/acb-privilege">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/acb.png" alt="Logo ACB Privilege" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>ACB Privilege</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'ACB Privilege','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/vietcombank-galaxy">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/vietcombank.png" alt="Logo Vietcombank Galaxy" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>Vietcombank Galaxy</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'Vietcombank Galaxy','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/bidv-premier">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/bidv.png" alt="Logo BIDV Premier" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>BIDV Premier</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'BIDV Premier','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/techcombank-new">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/techcombank.png" alt="Logo Techcombank New" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>Techcombank New</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'Techcombank New','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/tpbank-new">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/tpbank.png" alt="Logo TPBank New" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>TPBank New</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'TPBank New','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/vpbank-neo">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/vpbank.png" alt="Logo VPBank Neo" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>VPBank Neo</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'VPBank Neo','type' => 'Màn Hình Khoá']);?> bill</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-bank">
+    <div class="nui-card nui-card-rounded-lg nui-card-default p-6 shadow-lg border-none">
+        <a href="javascript:;" data-target-href="/fake-bill/man-hinh-khoa/seabank-premium">
+            <div class="flex flex-col">
+                <div class="nui-avatar nui-avatar-md mx-auto mb-4">
+                    <div class="nui-avatar-inner">
+                        <img src="/<?=__IMG__?>/icon/bank/seabank.png" alt="Logo SeaBank Premium" class="nui-avatar-img">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="nui-heading nui-heading-md nui-weight-bold nui-lead-tight text-muted-800 dark:text-muted-100">
+                        <span>SeaBank Premium</span>
+                    </h4>
+                    <p class="text-muted-400 font-sans fs-14px mt-1">Đã tạo: <?=$Bill->totalCreated(['namebill' => 'SeaBank Premium','type' => 'Màn Hình Khoá']);?> bill</p>
                 </div>
             </div>
         </a>

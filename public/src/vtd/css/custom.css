@@ -1923,3 +1923,16 @@ body {
     opacity: 0.05;
     border-radius: 0;
 }
+
+/* Mobile sidebar scroll lock */
+body.wt-sidebar-open {
+    overflow: hidden;
+    padding-right: 0;
+}
+@media (max-width: 1023px) {
+    body.wt-sidebar-open {
+        padding-right: 0;
+    }
+}
+
+/* Bill grid responsive */

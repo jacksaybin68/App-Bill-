@@ -101,19 +101,19 @@
         <!--TREO QUẢNG CÁO-->
         <style>
 /*<![CDATA[*/
-#overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:999}
-#popup{background-color:#0f172a;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.3);position:relative;z-index:2;animation:fadeIn 0.5s ease-out}
-#closeBtn{position:absolute;top:10px;right:10px;cursor:pointer;font-size:30px;color:#555;background-color:#eee;border:none;padding:0px 10px;border-radius:50%;transition:background-color 0.3s;z-index:999;height:38px;line-height:33px;}
-#closeBtn:hover{background-color:#ddd}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes fadeOut{from{opacity:1}to{opacity:0}}
-#popup img{max-width:100%;height:auto;display:block;margin:0 auto}
+#overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:9995}
+#popup{background-color:#1e293b;border:1px solid #334155;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);position:relative;z-index:2;animation:fadeIn 0.4s ease-out;max-width:90vw;width:936px}
+#closeBtn{position:absolute;top:8px;right:8px;cursor:pointer;font-size:28px;color:#94a3b8;background-color:#334155;border:1px solid #475569;padding:4px 10px;border-radius:50%;transition:background-color 0.2s;z-index:999;height:32px;line-height:24px;font-weight:bold}
+#closeBtn:hover{background-color:#475569;color:#e2e8f0}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+@keyframes fadeOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(0.95)}}
+#popup img{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:8px}
 /*]]>*/
 </style>
 <div id="overlay">
   <div id="popup">
     <span id="closeBtn" onclick="closePopup()">×</span>
-    <img src="https://files.catbox.moe/u0zvev.png" alt="Popup Image"/>
+    <img src="https://files.catbox.moe/u0zvev.png" alt="Billdayroi - @mrjack6789"/>
   </div>
 </div>
 <script>
